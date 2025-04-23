@@ -3,21 +3,43 @@ import java.util.Scanner;
 
 public class BudgetApp {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
 
-        while(scan.hasNextLine()) {
-            String category = scan.nextLine();
+        // Wave 1:
+        // Variables
+        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
+        BudgetCategory rent = new BudgetCategory("Rent", 1350, 1350);
+        BudgetCategory diningOut = new BudgetCategory("Dining Out", 120, 185);
+        BudgetCategory transportation = new BudgetCategory("Transportation", 200, 190);
+        BudgetCategory entertainment = new BudgetCategory("Entertainment", 150, 165);
+        BudgetCategory utilites = new BudgetCategory("Utilities", 150, 165);
+        
+        // Call out getters and toString
+        // for groceries
+        System.out.println(groceries);
+        System.out.println("Groceries limit: " + groceries.getLimit());
 
-            double limit = scan.nextDouble();
-            double spent = scan.nextDouble();
+        // for rent
+        System.out.println(rent);
+        System.out.println("Rent spent: " + rent.getSpent());
 
-            // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
+
+        // Scanner scan = new Scanner(System.in);
+
+        // while(scan.hasNextLine()) {
+        //     String category = scan.nextLine();
+
+        //     // Limit comes first, then spending
+        //     double limit = scan.nextDouble();
+        //     double spent = scan.nextDouble();
+
+        //     // Consume \n after spent input 
+        //     if(scan.hasNextLine()) scan.nextLine();
+
+            // String limitString = String.format("$%.2f", limit);
+            // String spentString = String.format("$%.2f", spent);
+            // System.out.println("The budget limit for " + category + " was: " + limitString + 
+            //                    " but the actual spend was " + spentString);
         }
     }
 
@@ -33,10 +55,10 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
-        // TODO: You will implement this method in Wave 5
-        // Note that this method SHOULD NOT have a print statement.
-        // It should instead return the value.
-        return -1;
-    }
-}
+    // public static int budgetDifference(List<BudgetCategory> categories) {
+    //     // TODO: You will implement this method in Wave 5
+    //     // Note that this method SHOULD NOT have a print statement.
+    //     // It should instead return the value.
+    //     return -1;
+    // }
+//}
