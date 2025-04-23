@@ -1,0 +1,18 @@
+Rent
+1350.00
+1350.00
+Groceries
+400.00
+375.00
+Dining Out
+120.00
+185.00
+Transportation
+200.00
+190.00
+Entertainment
+80.00
+115.00
+Utilities
+150.00
+165.00
