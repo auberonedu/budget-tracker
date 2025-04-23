@@ -1,4 +1,4 @@
-public class BudgetCategory {
+public class BudgetCategory implements Comparable<BudgetCategory>{
     private String category;
     private double limit;
     private double spent;
@@ -24,5 +24,17 @@ public class BudgetCategory {
     @Override
     public String toString(){
         return "Category: " + category + " limit: " + limit + " spent: " + spent;
+    }
+    public double spentRatio(){
+        return limit - spent;
+    }
+    public int compareTo(BudgetCategory otherBudgetCategory){
+        if (spentRatio() > otherBudgetCategory.spentRatio()) {
+            return 1;
+        }
+        if (spentRatio() < otherBudgetCategory.spentRatio()) {
+            return -1;
+        }
+        return 0;
     }
 }
