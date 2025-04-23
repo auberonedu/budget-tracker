@@ -26,4 +26,4 @@ public class BudgetCategory {
             return limit + "" + spending + "" + category;
         }
     }
-}
+    
