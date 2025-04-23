@@ -6,12 +6,13 @@ public class BudgetAppTest {
 public void testToString() {
 //Arrange
 BudgetCategory category = new BudgetCategory("Groceries", 500, 401);
+
 //Act
 String actual = category.toString();
+
 //Asssert
-String expected = "500. 401 Groceries";
+String expected = "Groceries: Budget: 500, Spent: 401";
 assertEquals(expected, actual);
-    
 }
 }
 

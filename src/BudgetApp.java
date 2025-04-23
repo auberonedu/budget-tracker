@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+
+        List<BudgetCategory>categories = new ArrayList<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -14,12 +17,21 @@ public class BudgetApp {
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
+            BudgetCategory a = new BudgetCategory(category, limit, spent);
+            categories.add(a);
         }
-    }
+    
+    
+
+            for(BudgetCategory a: categories) {
+                System.out.println(a);
+            }
+            // String limitString = String.format("$%.2f", limit);
+            // String spentString = String.format("$%.2f", spent);
+            // System.out.println("The budget limit for " + category + " was: " + limitString + 
+            //                    " but the actual spend was " + spentString);  
+     }
+
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
