@@ -3,7 +3,13 @@ import java.util.Scanner;
 
 public class BudgetApp {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
+        System.out.println(groceries);
+
+        BudgetCategory rent = new BudgetCategory("Rent", 1000, 950);
+        System.out.println(rent);
+
+        /** Scanner scan = new Scanner(System.in);
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -18,7 +24,7 @@ public class BudgetApp {
             String spentString = String.format("$%.2f", spent);
             System.out.println("The budget limit for " + category + " was: " + limitString + 
                                " but the actual spend was " + spentString);
-        }
+        } **/
     }
 
     /**
