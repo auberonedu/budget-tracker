@@ -6,7 +6,7 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        BudgetCategory sample = new BudgetCategory("rent", 2000, 2200);
+        // BudgetCategory sample = new BudgetCategory("rent", 2000, 2200);
 
         List<BudgetCategory> budgets = new ArrayList<>();
 
