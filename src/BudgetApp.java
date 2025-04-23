@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class BudgetApp {
 
         List<BudgetCategory> budgets = new ArrayList<>();
 
-        System.out.println(sample.toString());
+        //System.out.println(sample.toString());
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -25,13 +26,25 @@ public class BudgetApp {
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
+            // String limitString = String.format("$%.2f", limit);
+            // String spentString = String.format("$%.2f", spent);
+            // System.out.println("The budget limit for " + category + " was: " + limitString + 
+            //                    " but the actual spend was " + spentString);
         }
 
         System.out.println(budgets);
+        System.out.println();
+        Collections.sort(budgets, Collections.reverseOrder());
+        System.out.println("Least Overspent");
+        System.out.println(budgets);
+
+        System.out.println();
+        System.out.println("Most Overspent");
+        Collections.sort(budgets);
+        System.out.println(budgets);
+
+        System.out.println("this month we saved: " + budgetDifference(budgets));
+
     }
 
     /**
@@ -50,6 +63,16 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+
+        int sum = 0;
+
+        for (BudgetCategory budget : categories){
+            double save =  budget.getLimit() - budget.getActual();
+
+            sum += save;
+        }
+
+        
+        return sum;
     }
 }
