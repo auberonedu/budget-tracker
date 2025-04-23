@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,41 +7,53 @@ public class BudgetApp {
 
         // Wave 1:
         // Variables
-        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
-        BudgetCategory rent = new BudgetCategory("Rent", 1350, 1350);
-        BudgetCategory diningOut = new BudgetCategory("Dining Out", 120, 185);
-        BudgetCategory transportation = new BudgetCategory("Transportation", 200, 190);
-        BudgetCategory entertainment = new BudgetCategory("Entertainment", 150, 165);
-        BudgetCategory utilites = new BudgetCategory("Utilities", 150, 165);
+        // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
+        // BudgetCategory rent = new BudgetCategory("Rent", 1350, 1350);
+        // BudgetCategory diningOut = new BudgetCategory("Dining Out", 120, 185);
+        // BudgetCategory transportation = new BudgetCategory("Transportation", 200, 190);
+        // BudgetCategory entertainment = new BudgetCategory("Entertainment", 150, 165);
+        // BudgetCategory utilites = new BudgetCategory("Utilities", 150, 165);
         
         // Call out getters and toString
         //for groceries
-        System.out.println(groceries);
-        System.out.println(groceries.toString());
-        System.out.println("Groceries limit: " + groceries.getLimit());
+        // System.out.println(groceries);
+        // System.out.println(groceries.toString());
+        // System.out.println("Groceries limit: " + groceries.getLimit());
 
-        // for rent
-        System.out.println(rent);
-        System.out.println(rent.toString());
-        System.out.println("Rent spent: " + rent.getSpent());
+        // // for rent
+        // System.out.println(rent);
+        // System.out.println(rent.toString());
+        // System.out.println("Rent spent: " + rent.getSpent());
 
-        
-        // Scanner scan = new Scanner(System.in);
+        // Wave 3
+        Scanner scan = new Scanner(System.in);
 
-        // while(scan.hasNextLine()) {
-        //     String category = scan.nextLine();
+        // Create a list of BudgetCategory
+        List <BudgetCategory> budgetList = new ArrayList<>();
 
-        //     // Limit comes first, then spending
-        //     double limit = scan.nextDouble();
-        //     double spent = scan.nextDouble();
+        while(scan.hasNextLine()) {
+            String category = scan.nextLine();
 
-        //     // Consume \n after spent input 
-        //     if(scan.hasNextLine()) scan.nextLine();
+            // Limit comes first, then spending
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
 
-            // String limitString = String.format("$%.2f", limit);
-            // String spentString = String.format("$%.2f", spent);
-            // System.out.println("The budget limit for " + category + " was: " + limitString + 
-            //                    " but the actual spend was " + spentString);
+            // Consume \n after spent input 
+            if(scan.hasNextLine()) scan.nextLine();
+
+            // Add each of the categories scanned in the loop
+            budgetList.add(new BudgetCategory(category, limit, spent));
+
+            String limitString = String.format("$%.2f", limit);
+            String spentString = String.format("$%.2f", spent);
+
+            }
+            
+            // Print out the whole list by using for each loop
+            System.out.println("Categories List:" + budgetList);
+            for (BudgetCategory eachCategory : budgetList){
+                System.out.println(eachCategory);
+            
         }
     }
 
@@ -62,4 +75,4 @@ public class BudgetApp {
     //     // It should instead return the value.
     //     return -1;
     // }
-//}
+}
