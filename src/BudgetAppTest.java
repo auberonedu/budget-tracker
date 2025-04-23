@@ -11,7 +11,7 @@ public class BudgetAppTest {
         String actual = budget.toString();
 
         //Assert
-        String expected = "Category: Food" + "\nlimit: 400.0" + "\nspent: 500.0";
+        String expected = "Category: Food" + " limit: 400.0" + " spent: 500.0";
         assertEquals(expected, actual);
     }
 }
