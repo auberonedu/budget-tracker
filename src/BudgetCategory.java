@@ -21,6 +21,7 @@ public class BudgetCategory {
         return spent;
     }
 
+    @Override
     public String toString(){
         return "The budget limit for " + category + " was: " + limit + " but the actual spend was " + spent;
 

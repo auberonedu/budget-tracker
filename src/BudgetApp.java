@@ -14,16 +14,17 @@ public class BudgetApp {
         BudgetCategory utilites = new BudgetCategory("Utilities", 150, 165);
         
         // Call out getters and toString
-        // for groceries
+        //for groceries
         System.out.println(groceries);
+        System.out.println(groceries.toString());
         System.out.println("Groceries limit: " + groceries.getLimit());
 
         // for rent
         System.out.println(rent);
+        System.out.println(rent.toString());
         System.out.println("Rent spent: " + rent.getSpent());
 
-
-
+        
         // Scanner scan = new Scanner(System.in);
 
         // while(scan.hasNextLine()) {
