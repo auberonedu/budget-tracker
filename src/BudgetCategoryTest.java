@@ -20,16 +20,15 @@ public class BudgetCategoryTest {
     @Test
     void testCompareToOverUnder() {
         // Arrange: One category is over budget, one is under budget
-        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 510); // Over by 10
-        BudgetCategory entertainment = new BudgetCategory("Entertainment", 300, 280); // Under by 20
+        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401); 
+        BudgetCategory entertainment = new BudgetCategory("Entertainment", 300, 280); 
 
         // Act: Compare the two categories
         int actual = groceries.compareTo(entertainment);
 
-        // Assert: Groceries is over budget, entertainment is under budget, so groceries should come last
-        assertTrue(actual > 0); // Groceries should be greater than entertainment
+        // Assert: 
+        assertTrue(actual > 0); 
     }
-
 
     @Test
     void testCompareToSameDiff() {
@@ -38,19 +37,20 @@ public class BudgetCategoryTest {
         BudgetCategory utilities = new BudgetCategory("Utilities", 300, 250); 
 
           // Act: Comparing the two categories
-          int spending = groceries.compareTo(utilities);
+          int spent = groceries.compareTo(utilities);
 
           // Assert: 
-          assertEquals(0, spending); 
+          assertEquals(0, spent); 
       }
+
       @Test
     void testCompareToDifferentDiff() {
         // Arrange: 
         BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401); 
-        BudgetCategory utilities = new BudgetCategory("Utilities", 100, 120); 
+        BudgetCategory eatingOut = new BudgetCategory("EatingOut", 100, 120); 
 
         // Act: Compare the two categories
-        int actual = groceries.compareTo(utilities);
+        int actual = groceries.compareTo(eatingOut);
 
         // Assert: 
         assertTrue(actual < 0); 
