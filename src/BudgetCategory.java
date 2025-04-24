@@ -23,6 +23,6 @@ public class BudgetCategory {
 
     @Override
     public String toString() {
-        return "BudgetCategory [category=" + category + ", limit=" + limit + ", spending=" + spending + "]";
+        return "BudgetCategory : " + category + ", limit=" + limit + ", spending=" + spending;
     }
 }
