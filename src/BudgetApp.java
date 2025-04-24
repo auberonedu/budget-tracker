@@ -39,7 +39,7 @@ public class BudgetApp {
         System.out.println(myBudgetList);
         Collections.sort(myBudgetList, Collections.reverseOrder());
         System.out.println(myBudgetList);
-
+        System.out.println("The budgetDifference : " + budgetDifference(myBudgetList));
     }
 
     /**
@@ -60,6 +60,16 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+
+        int result = 0;
+
+        for (BudgetCategory cat: categories) {
+            if (cat.budgetSavings() > 0) {
+                result--;
+            } else if (cat.budgetSavings() < 0) {
+                result++;
+            }
+        }
+        return result;
     }
 }
