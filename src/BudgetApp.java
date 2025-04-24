@@ -45,6 +45,8 @@ public class BudgetApp {
 
         System.out.println("this month we saved: " + budgetDifference(budgets));
 
+        System.out.println(budgets.get(0));
+
     }
 
     /**
