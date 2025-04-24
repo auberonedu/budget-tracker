@@ -20,7 +20,13 @@ public class BudgetCategory {
         public String getCategory() {
             return category;
         }
-        
+
+        //getDiff method
+        public double getDiff() {
+            return spending - limit;
+        }
+    
+        //toString method
         @Override
         public String toString() {
             return "Category: "+ category + " Limit: $ " + limit + " Spending: $ " + spending;
