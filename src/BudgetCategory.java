@@ -20,10 +20,22 @@ public class BudgetCategory {
         public String getCategory() {
             return category;
         }
-    
+        
+        /**
+         * @param other
+         * @return
+         */
+        @Override 
+        public int compareTo(BudgetCategory other) {
+            return Double.compare(this.getDiff(), other.getDiff());
+        }
+
         @Override
         public String toString() {
             return category + " " + limit + " " + spending;
+        }
+        public double getDiff(){
+            return spending - limit;
         }
     }
     
