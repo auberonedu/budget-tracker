@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,11 +21,16 @@ public class BudgetApp {
 
             String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
-            
         }
         // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
         // System.out.println(groceries);
         System.out.println(budgetList);
+        //This is smallest to largest in the sense that it is the least underbudget not over
+        // Collections.sort(budgetList, Collections.reverseOrder());
+        Collections.sort(budgetList);
+        System.out.println(budgetList);
+        System.out.println();
+        System.out.println("Overall over/under budget: " + budgetDifference(budgetList) +"$");
     }
 
     /**
@@ -42,6 +49,10 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+        int finalBudgetDifference = 0;
+        for (BudgetCategory budgetCategory:categories) {
+            finalBudgetDifference += budgetCategory.spentRatio();
+        }
+        return finalBudgetDifference;
     }
 }
