@@ -20,9 +20,6 @@ public class BudgetApp {
             BudgetCategory a = new BudgetCategory(category, limit, spent);
             categories.add(a);
         }
-    
-    
-
             for(BudgetCategory a: categories) {
                 System.out.println(a);
             }
