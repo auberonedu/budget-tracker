@@ -58,7 +58,7 @@ public class BudgetAppTest {
     }
 
     @Test
-    void testDescribeBudgetDifferenceIsPositive() {
+    void testDescribeBudgetDifferenceIsOverBudgetByOne() {
         // Arrange
         List<BudgetCategory> myBudgetList = new ArrayList<>();
         myBudgetList.add(new BudgetCategory("Entertainment", 200, 180));
@@ -70,5 +70,20 @@ public class BudgetAppTest {
 
         // Assert
         assertEquals(1, actual);
+    }
+
+    @Test
+    void testDescribeBudgetDifferenceIsUnderBudgetByTwo() {
+        // Arrange
+        List<BudgetCategory> myBudgetList = new ArrayList<>();
+        myBudgetList.add(new BudgetCategory("Entertainment", 200, 180));
+        myBudgetList.add(new BudgetCategory("Groceries", 500, 450));
+        myBudgetList.add(new BudgetCategory("Rent", 1500, 1500));
+
+        // Act
+        int actual = BudgetApp.budgetDifference(myBudgetList);
+
+        // Assert
+        assertEquals(-2, actual);
     }
 }
