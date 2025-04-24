@@ -27,7 +27,7 @@ public class BudgetCategoryTest {
         int actual = groceries.compareTo(entertainment);
 
         // Assert: 
-        assertTrue(actual > 0); 
+        assertEquals(1,actual); 
     }
 
     @Test
