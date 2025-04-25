@@ -28,5 +28,46 @@ public class BudgetAppTest {
         // Assert
         assertEquals(expected, actual);
     }
+
+
+    // Wave 4
+    @Test
+    void testingForCompareToBudget1(){
+        // Arrange
+        BudgetCategory entertainment = new BudgetCategory("entertainment", 125, 150);
+        BudgetCategory rent = new BudgetCategory("rent", 1500, 1800);
+
+        // Act
+        int actual = entertainment.compareTo(rent);
+
+        // Assert
+        assertEquals(1, actual);
+    }
+
+    @Test
+    void testingForCompareToBudget2(){
+        // Arrange
+        BudgetCategory groceries = new BudgetCategory("groceries", 200, 180);
+        BudgetCategory entertainment = new BudgetCategory("entertainment", 200, 220);
+
+        // Act
+        int actual = entertainment.compareTo(groceries);
+
+        // Assert
+        assertEquals(-1, actual);
+    }
+
+    @Test
+    void testingForCompareToBudget3(){
+        // Arrange
+        BudgetCategory diningOut = new BudgetCategory("dining out", 250, 250);
+        BudgetCategory utilities = new BudgetCategory("utilities", 400, 400);
+
+        // Act
+        int actual = utilities.compareTo(diningOut);
+
+        // Assert
+        assertEquals(0, actual);
+    }
     
 }
