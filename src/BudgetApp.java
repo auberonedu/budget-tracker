@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +14,7 @@ public class BudgetApp {
         // BudgetCategory diningOut = new BudgetCategory("Dining Out", 120, 185);
         // BudgetCategory transportation = new BudgetCategory("Transportation", 200, 190);
         // BudgetCategory entertainment = new BudgetCategory("Entertainment", 150, 165);
-        // BudgetCategory utilites = new BudgetCategory("Utilities", 150, 165);
+        // BudgetCategory utilities = new BudgetCategory("Utilities", 150, 165);
         
         // Call out getters and toString
         //for groceries
@@ -44,17 +46,35 @@ public class BudgetApp {
             // Add each of the categories scanned in the loop
             budgetList.add(new BudgetCategory(category, limit, spent));
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
+            // String limitString = String.format("$%.2f", limit);
+            // String spentString = String.format("$%.2f", spent);
 
-            }
             
-            // Print out the whole list by using for each loop
-            System.out.println("Categories List:" + budgetList);
-            for (BudgetCategory eachCategory : budgetList){
-                System.out.println(eachCategory);
             
         }
+            // From my understanding, the Most overspent will be what we spent minus limit. For example:
+            // Dining out limit: 120, spent: 185. -> Overspent: 65. 
+            // -> This will be the first number to be displayed as first.
+            // -> After testing with print statement, I figured that I don't need to use Collections.reverseOrder().
+            Collections.sort(budgetList);
+
+            // Print out the whole list by using for each loop
+            System.out.println("Categories List Most Overspent to Least:");
+            for (BudgetCategory eachCategory : budgetList){
+                System.out.println(eachCategory);
+        }
+
+    
+        double totalDifferent = budgetDifference(budgetList);
+        if (totalDifferent > 0){
+            System.out.println("You're OVER budget" + totalDifferent);
+        }
+        else if (totalDifferent < 0){
+            System.out.println("You're UNDER budget. Good job!" + totalDifferent);
+        }
+        else {System.out.println("You're okay for making 0 balance.");}
+    
+    
     }
 
     /**
@@ -63,16 +83,22 @@ public class BudgetApp {
      * 
      * This should be the sum of how much over/under budget each individual category is.
      * 
-     * If the person is under budget, the result will be negative. If they are over budget, the
-     * result will be positive.
+     * If the person is under budget, the result will be negative. If they are over budget, the result will be positive.
      * 
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    // public static int budgetDifference(List<BudgetCategory> categories) {
-    //     // TODO: You will implement this method in Wave 5
-    //     // Note that this method SHOULD NOT have a print statement.
-    //     // It should instead return the value.
-    //     return -1;
-    // }
+    public static double budgetDifference(List<BudgetCategory> categories) {
+        // TODO: You will implement this method in Wave 5
+        // Note that this method SHOULD NOT have a print statement.
+        // It should instead return the value.
+
+        double totalDifferent = 0;
+        for (BudgetCategory eachCategory : categories){
+            totalDifferent += eachCategory.differences();
+    }
+        return totalDifferent;
+    }
+
 }
+

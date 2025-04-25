@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BudgetAppTest {
 
     // Wave 2
@@ -68,6 +71,40 @@ public class BudgetAppTest {
 
         // Assert
         assertEquals(0, actual);
+    }
+
+    // Wave 5
+    @Test
+    void testingTotalOfBudgetDifference(){
+
+        // Arrange
+        // Create categories
+        BudgetCategory groceries = new BudgetCategory("Groceries", 400, 450); // Over 50
+        BudgetCategory rent = new BudgetCategory("Rent", 1000, 1000); // Even
+        BudgetCategory diningOut = new BudgetCategory("Dining Out", 200, 185); // Under 15
+        BudgetCategory transportation = new BudgetCategory("Transportation", 100, 90); // Under 10
+        BudgetCategory entertainment = new BudgetCategory("Entertainment", 100, 200); // Over 100
+        BudgetCategory utilities = new BudgetCategory("Utilities", 150, 180); // Over 30
+
+        // Create a list
+        List<BudgetCategory> myList = new ArrayList<>();
+        myList.add(groceries);
+        myList.add(rent);
+        myList.add(diningOut);
+        myList.add(transportation);
+        myList.add(entertainment);
+        myList.add(utilities);
+
+        // Act
+        double actualDifferences = BudgetApp.budgetDifference(myList);
+        double expectedDifferences = 50 + 0 - 15 - 10 + 100 + 30;
+
+        // Assert
+        assertEquals(expectedDifferences, actualDifferences, 155);
+
+
+
+
     }
     
 }
