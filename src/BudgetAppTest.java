@@ -34,8 +34,8 @@ public class BudgetAppTest {
     @Test
     void testingForCompareToBudget1(){
         // Arrange
-        BudgetCategory entertainment = new BudgetCategory("entertainment", 125, 150);
-        BudgetCategory rent = new BudgetCategory("rent", 1500, 1800);
+        BudgetCategory entertainment = new BudgetCategory("entertainment", 125, 150); // Over 25
+        BudgetCategory rent = new BudgetCategory("rent", 1500, 1800); // Over 300
 
         // Act
         int actual = entertainment.compareTo(rent);
@@ -47,8 +47,8 @@ public class BudgetAppTest {
     @Test
     void testingForCompareToBudget2(){
         // Arrange
-        BudgetCategory groceries = new BudgetCategory("groceries", 200, 180);
-        BudgetCategory entertainment = new BudgetCategory("entertainment", 200, 220);
+        BudgetCategory groceries = new BudgetCategory("groceries", 200, 180); // Under 20
+        BudgetCategory entertainment = new BudgetCategory("entertainment", 200, 220); // Over 20
 
         // Act
         int actual = entertainment.compareTo(groceries);
@@ -60,8 +60,8 @@ public class BudgetAppTest {
     @Test
     void testingForCompareToBudget3(){
         // Arrange
-        BudgetCategory diningOut = new BudgetCategory("dining out", 250, 250);
-        BudgetCategory utilities = new BudgetCategory("utilities", 400, 400);
+        BudgetCategory diningOut = new BudgetCategory("dining out", 250, 250); // Even
+        BudgetCategory utilities = new BudgetCategory("utilities", 400, 400); // Even
 
         // Act
         int actual = utilities.compareTo(diningOut);

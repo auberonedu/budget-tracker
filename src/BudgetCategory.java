@@ -28,15 +28,15 @@ public class BudgetCategory implements Comparable<BudgetCategory>{
     }
 
     public double differences(){
-        return limit - spent;
+        return spent - limit;
     }
 
     // CompareTo method
     public int compareTo(BudgetCategory other){
-        if (differences() < other.differences()){
+        if (differences() > other.differences()){
             return -1;
         }
-        if (differences() > other.differences()){
+        if (differences() < other.differences()){
             return 1;
         }
         return 0;
