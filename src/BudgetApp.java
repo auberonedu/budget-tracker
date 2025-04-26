@@ -23,8 +23,6 @@ public class BudgetApp {
             System.out.println("Category: " + category);
             System.out.println("Limit: " + limitString);
             System.out.println("Spent: " + spentString);
-            // System.out.println("The budget limit for " + category + " was: " + limitString + 
-            //                    " but the actual spend was " + spentString);
         }
     }
 
