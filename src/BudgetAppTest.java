@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetAppTest {
-
     @Test
     public void testToString() {
         BudgetCategory groceries = new BudgetCategory("groceries", 250, 200);

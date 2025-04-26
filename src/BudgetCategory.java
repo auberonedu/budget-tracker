@@ -1,4 +1,4 @@
-public class BudgetCategory {
+public class BudgetCategory implements Comparable<BudgetCategory> {
     private String category;
     private double limit;
     private double actual;
@@ -31,6 +31,18 @@ public class BudgetCategory {
 
     public void setActual(double actual) {
         this.actual = actual;
+    }
+
+    public double limitPerformance() {
+        return actual - limit;
+    }
+    public int compareTo(BudgetCategory other) {
+        if (limitPerformance() < other.limitPerformance()) {
+            return -1;
+        } else if (limitPerformance() > other.limitPerformance()) {
+            return 1;
+        }
+        return 0;
     }
     @Override
     public String toString() {
