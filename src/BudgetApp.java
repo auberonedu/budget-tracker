@@ -7,28 +7,25 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         List<BudgetCategory> budgets = new ArrayList<>();
-        
-        BudgetCategory electronics = new BudgetCategory("tablet", 500, 200);
-        System.out.println(electronics.toString());
-        
-        //while(scan.hasNextLine()) {
-        //  String category = scan.nextLine();
+        /**
+        **BudgetCategory electronics = new BudgetCategory("tablet", 500, 200);
+        ***System.out.println(electronics.toString());
+        */
+        while(scan.hasNextLine()) {
+          String category = scan.nextLine();
 
-        //    double limit = scan.nextDouble();
-        //    double spent = scan.gnextDouble();
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
             
-        //    BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
-        //    budgets.add(budgetCategory);
+            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+            budgets.add(budgetCategory);
             // Consume \n after spent input 
-        //    if(scan.hasNextLine()) scan.nextLine();
+            if(scan.hasNextLine()) scan.nextLine();
 
-        //    String limitString = String.format("$%.2f", limit);
-        //    String spentString = String.format("$%.2f", spent);
-        //    System.out.println("The budget limit for " + category + " was: " + limitString + " but the actual spend was " + spentString);
-                               
         }
-    }
-
+        System.out.println(budgets);   
+    }              
+}
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
