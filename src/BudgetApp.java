@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,6 +30,9 @@ public class BudgetApp {
             categories.add(budgetCategory);
         }
 
+        // Sort from most to least overspent category
+        Collections.sort(categories, Collections.reverseOrder());
+
         for (BudgetCategory bc : categories) {
             System.out.println(bc);
         }
@@ -50,6 +54,11 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+        double total = 0.0;
+        
+        for (BudgetCategory bc : categories) {
+            total += bc.getSpent() - bc.getLimit();
+        }
+        return (int)Math.round(total);
     }
 }
