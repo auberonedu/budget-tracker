@@ -1,15 +1,18 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BudgetApp {
     public static void main(String[] args) {
-        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
+        /**BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
         System.out.println(groceries);
 
         BudgetCategory rent = new BudgetCategory("Rent", 1000, 950);
-        System.out.println(rent);
+        System.out.println(rent);**/
 
-        /** Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+
+        List<BudgetCategory> categories = new ArrayList<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -22,9 +25,13 @@ public class BudgetApp {
 
             String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
-        } **/
+            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+            categories.add(budgetCategory);
+        }
+
+        for (BudgetCategory bc : categories) {
+            System.out.println(bc);
+        }
     }
 
     /**
