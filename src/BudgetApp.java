@@ -11,45 +11,35 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         List<BudgetCategory> categories = new ArrayList<>();
-        categories.add(new BudgetCategory("Groceries", 500, 490));
-        categories.add(new BudgetCategory("Dining out", 200, 300));
-        categories.add(new BudgetCategory("Entertainment", 350, 450));
-        categories.add(new BudgetCategory("Utilities", 1000, 850));
-        categories.add(new BudgetCategory("Rent", 1350, 1350));
-        categories.add(new BudgetCategory("Transportation", 633, 633));
-
-        // System.out.println("Original Order");
-        // for(BudgetCategory category : categories) {
-        //     System.out.println(category);
-        // }
-
-        // Collections.sort(categories, Comparator.reverseOrder()); // uses the compareTo() method to reverse the order.
-
-        // System.out.println("Sorted");
-        // for(BudgetCategory category : categories) {
-        //     System.out.println(category);
-        // }
-
-         System.out.println(budgetDifference(categories));
 
 
+            while(scan.hasNextLine()) {
 
-        // while(scan.hasNextLine()) {
-        //     String category = scan.nextLine();
+            String category = scan.nextLine();
 
-        //     double limit = scan.nextDouble();
-        //     double spent = scan.nextDouble();
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
 
-        //     // Consume \n after spent input 
-        //     if(scan.hasNextLine()) scan.nextLine();
+            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+            categories.add(budgetCategory);
 
-        //     String limitString = String.format("$%.2f", limit);
-        //     String spentString = String.format("$%.2f", spent);
+            // Consume \n after spent input 
+            if(scan.hasNextLine()) scan.nextLine();
 
-        //     System.out.println("Category: " + category);
-        //     System.out.println("Limit: " + limitString);
-        //     System.out.println("Spent: " + spentString);
+            String limitString = String.format("$%.2f", limit);
+            String spentString = String.format("$%.2f", spent);
+            }
+            scan.close();
+            System.out.println("---Sorted---");
+            Collections.sort(categories, Collections.reverseOrder());
+            System.out.println(categories);
+
+            Collections.sort(categories);
+            System.out.println(categories);
+            System.out.println(budgetDifference(categories));
         }
+
+    
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
@@ -67,10 +57,12 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        int totalDifference = 0;
+        int sum = 0;
         for(BudgetCategory category : categories) {
-            totalDifference += (category.getSpent() - category.getLimit());
+             double spent = (category.getSpent() - category.getLimit());
+             sum += spent;
         }
-        return totalDifference;
+        return sum;
     }
 }
+
