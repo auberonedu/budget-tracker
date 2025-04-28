@@ -1,25 +1,45 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Locale.Category;
+
+import org.junit.experimental.categories.Categories;
 
 public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        List<BudgetCategory> categories = new ArrayList<>();
 
-        while(scan.hasNextLine()) {
+
+            while(scan.hasNextLine()) {
+
             String category = scan.nextLine();
 
             double limit = scan.nextDouble();
             double spent = scan.nextDouble();
+
+            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+            categories.add(budgetCategory);
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
             String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
+            }
+            scan.close();
+            System.out.println("---Sorted---");
+            Collections.sort(categories, Collections.reverseOrder());
+            System.out.println(categories);
+
+            Collections.sort(categories);
+            System.out.println(categories);
+            System.out.println(budgetDifference(categories));
         }
-    }
+
+    
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
@@ -37,6 +57,12 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+        int sum = 0;
+        for(BudgetCategory category : categories) {
+             double spent = (category.getSpent() - category.getLimit());
+             sum += spent;
+        }
+        return sum;
     }
 }
+
