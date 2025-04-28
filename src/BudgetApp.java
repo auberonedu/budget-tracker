@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class BudgetApp {
     public static void main(String[] args) {
         // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
@@ -22,10 +23,9 @@ public class BudgetApp {
             BudgetCategory bc = new BudgetCategory(category, limit, spent);
             categories.add(bc);
 
-            for (BudgetCategory bc : categories) {
-                System.out.println(bc);
-            }
-        
+        }
+        for (BudgetCategory bc : categories) {
+            System.out.println(bc);
         }
     }
 
