@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,9 +25,16 @@ public class BudgetApp {
             categories.add(bc);
 
         }
+
+        Collections.sort(categories);
+        Collections.reverse(categories);
+
         for (BudgetCategory bc : categories) {
             System.out.println(bc);
         }
+
+        int total = budgetDifference(categories);
+        System.out.println("Total budget difference: " + total);
     }
 
     /**
@@ -45,6 +53,16 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+        int totalDifference = 0;
+
+        for (BudgetCategory category : categories) {
+            totalDifference += category.getSpent() - category.getLimit();
+        }
+    
+        return totalDifference;
     }
+    
+
+        
+    
 }
