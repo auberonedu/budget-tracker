@@ -106,5 +106,39 @@ public class BudgetAppTest {
 
 
     }
+
+
+    @Test
+    void testingTotalOfBudgetDifference2(){
+
+        // Arrange
+        // Create categories
+        BudgetCategory groceries = new BudgetCategory("Groceries", 400, 500); // Over 100
+        BudgetCategory rent = new BudgetCategory("Rent", 1800, 2000); // Over 200
+        BudgetCategory diningOut = new BudgetCategory("Dining Out", 250, 200); // Under 50
+        BudgetCategory transportation = new BudgetCategory("Transportation", 150, 120); // Under 30
+        BudgetCategory entertainment = new BudgetCategory("Entertainment", 150, 200); // Over 50
+        BudgetCategory utilities = new BudgetCategory("Utilities", 150, 120); // Under 30
+
+        // Create a list
+        List<BudgetCategory> myList = new ArrayList<>();
+        myList.add(groceries);
+        myList.add(rent);
+        myList.add(diningOut);
+        myList.add(transportation);
+        myList.add(entertainment);
+        myList.add(utilities);
+
+        // Act
+        double actualDifferences = BudgetApp.budgetDifference(myList);
+        double expectedDifferences =  100 + 200 - 50 - 30 + 50 - 30;
+
+        // Assert
+        assertEquals(expectedDifferences, actualDifferences, 300);
+
+
+
+
+    }
     
 }

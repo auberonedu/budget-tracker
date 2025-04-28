@@ -67,10 +67,10 @@ public class BudgetApp {
     
         double totalDifferent = budgetDifference(budgetList);
         if (totalDifferent > 0){
-            System.out.println("You're OVER budget" + totalDifferent);
+            System.out.println("You're OVER budget: " + totalDifferent);
         }
         else if (totalDifferent < 0){
-            System.out.println("You're UNDER budget. Good job!" + totalDifferent);
+            System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
         }
         else {System.out.println("You're okay for making 0 balance.");}
     
