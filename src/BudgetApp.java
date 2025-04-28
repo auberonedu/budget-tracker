@@ -7,12 +7,12 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         List<BudgetCategory> budgets = new ArrayList<>();
-        /**
-        **BudgetCategory electronics = new BudgetCategory("tablet", 500, 200);
-        ***System.out.println(electronics.toString());
-        */
+        
+        //BudgetCategory electronics = new BudgetCategory("tablet", 500, 200);
+        //System.out.println(electronics.toString());
+        
         while(scan.hasNextLine()) {
-          String category = scan.nextLine();
+            String category = scan.nextLine();
 
             double limit = scan.nextDouble();
             double spent = scan.nextDouble();
@@ -20,12 +20,23 @@ public class BudgetApp {
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
             budgets.add(budgetCategory);
             // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();
-
+            if(scan.hasNextLine()) scan.nextLine();                    
         }
-        System.out.println(budgets);   
-    }              
-}
+        scan.close();
+
+        System.out.println(budgets);
+        System.out.println();
+        
+        Collections.sort(budgets, Collections.reverseOrder());
+        System.out.println("Least Overspent: " + budgets);
+        System.out.println();
+        
+        Collections.sort(budgets);
+        System.out.println("Most Overspent: " + budgets);
+        System.out.println();
+        
+        System.out.println("This month we save: " + budgetDifference(budgets));
+    }
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
@@ -39,9 +50,17 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    //public static int budgetDifference(List<BudgetCategory> categories) {
+    public static int budgetDifference(List<BudgetCategory> categories) {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-    //}
-//}
+        
+        int sum = 0;
+
+        for (BudgetCategory budget : categories) {
+            double save =  budget.getActual() - budget.getLimit();
+            sum += save;
+        }
+        return sum;
+    }
+}
