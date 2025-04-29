@@ -1,11 +1,13 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
 
 public class BudgetApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
 
         // Wave 1:
         // Variables
@@ -28,7 +30,9 @@ public class BudgetApp {
         // System.out.println("Rent spent: " + rent.getSpent());
 
         // Wave 3
-        Scanner scan = new Scanner(System.in);
+        //1. Modify your code so that it accepts a file name from the command line argument. Have it read from that file to populate the budget category information.
+        String fileName = args[0];
+        Scanner scan = new Scanner(new File(fileName));
 
         // Create a list of BudgetCategory
         List <BudgetCategory> budgetList = new ArrayList<>();
@@ -49,8 +53,6 @@ public class BudgetApp {
             // String limitString = String.format("$%.2f", limit);
             // String spentString = String.format("$%.2f", spent);
 
-            
-            
         }
             // From my understanding, the Most overspent will be what we spent minus limit. For example:
             // Dining out limit: 120, spent: 185. -> Overspent: 65. 
@@ -63,7 +65,6 @@ public class BudgetApp {
             for (BudgetCategory eachCategory : budgetList){
                 System.out.println(eachCategory);
         }
-
     
         double totalDifferent = budgetDifference(budgetList);
         if (totalDifferent > 0){
@@ -73,7 +74,6 @@ public class BudgetApp {
             System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
         }
         else {System.out.println("You're okay for making 0 balance.");}
-    
     
     }
 
