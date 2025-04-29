@@ -78,32 +78,59 @@ public class BudgetApp {
                     System.out.println("Thanks for stopping by!");
                     userScanner.close();
                     break;
+                } else if (categoryName.equalsIgnoreCase("summary")){
+                    double totalLimit = 0;
+                    double totalSpent = 0;
+                    
+
+                    // For loop
+                    for (BudgetCategory category : budgetCategoryMap.values()){
+                        totalLimit +=  category.getLimit();
+                        totalSpent+= category.getSpent();
+                    }
+
+                    double difference = totalSpent - totalLimit;
+                    System.out.println("Here's your Budget summary:");
+                    System.out.println("Total of LIMIT: " + totalLimit);
+                    System.out.println("Total of SPENT: " + totalSpent);
+
+                    if(difference > 0){
+                        System.out.println("You're OVER the budget!!! " + difference);
+                    } else if (difference < 0){
+                        System.out.println("You're UNDER the budget! " + difference);
+                    } else {
+                        System.out.println("You're just making an EVEN! Better watch out.");
+                    }
                 }
 
-                BudgetCategory myCategory = budgetCategoryMap.get(categoryName); 
+                else {
+                    BudgetCategory myCategory = budgetCategoryMap.get(categoryName); 
                 if(myCategory == null){
                     System.out.println("There is no match! Try again...");
                 } else {
                     System.out.println(myCategory);
                 }
             }
+            
+        }
+    }
 
             // Print out the whole list by using for each loop
-        //     System.out.println("Categories List Most Overspent to Least:");
-        //     for (BudgetCategory eachCategory : budgetList){
-        //         System.out.println(eachCategory);
-        // }
+            // System.out.println("Categories List Most Overspent to Least:");
+            // for (BudgetCategory eachCategory : budgetList){
+            //     System.out.println(eachCategory);
+            // }
     
         // double totalDifferent = budgetDifference(budgetList);
-        // if (totalDifferent > 0){
-        //     System.out.println("You're OVER budget: " + totalDifferent);
-        // }
-        // else if (totalDifferent < 0){
-        //     System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
-        // }
-        // else {System.out.println("You're okay for making 0 balance.");}
+    //     if (totalDifferent > 0){
+    //         System.out.println("You're OVER budget: " + totalDifferent);
+    //     }
+    //     else if (totalDifferent < 0){
+    //         System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
+    //     }
+    //     else {System.out.println("You're okay for making 0 balance.");}
     
-    }
+    // }
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
