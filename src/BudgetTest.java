@@ -33,5 +33,21 @@ public class BudgetTest {
 
     }
 
+    void RemainderTesting(){
+        // Arrange
+        Budget remainderTest = new Budget();
+        
+        // Act
+        remainderTest.add(new BudgetCategory("Rent", 2500, 3000));
+        double expected = -500;
+        double actual = remainderTest.remainder();
+
+        // Assert
+        assertEquals(expected, actual);
+
+    }
+
+    
+
     
 }
