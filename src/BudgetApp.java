@@ -65,22 +65,43 @@ public class BudgetApp {
             // Dining out limit: 120, spent: 185. -> Overspent: 65. 
             // -> This will be the first number to be displayed as first.
             // -> After testing with print statement, I figured that I don't need to use Collections.reverseOrder().
-            Collections.sort(budgetList);
+            // Collections.sort(budgetList);
+
+            Scanner userScanner = new Scanner(System.in);
+
+            // While loop
+            while(true){
+                System.out.println("Please enter the category that you're interested in: (Rent, Groceries, Dining Out, Transportation, Entertainment, Utilities)");
+                String categoryName = userScanner.nextLine();
+
+                if (categoryName.equalsIgnoreCase("quit")){
+                    System.out.println("Thanks for stopping by!");
+                    userScanner.close();
+                    break;
+                }
+
+                BudgetCategory myCategory = budgetCategoryMap.get(categoryName); 
+                if(myCategory == null){
+                    System.out.println("There is no match! Try again...");
+                } else {
+                    System.out.println(myCategory);
+                }
+            }
 
             // Print out the whole list by using for each loop
-            System.out.println("Categories List Most Overspent to Least:");
-            for (BudgetCategory eachCategory : budgetList){
-                System.out.println(eachCategory);
-        }
+        //     System.out.println("Categories List Most Overspent to Least:");
+        //     for (BudgetCategory eachCategory : budgetList){
+        //         System.out.println(eachCategory);
+        // }
     
-        double totalDifferent = budgetDifference(budgetList);
-        if (totalDifferent > 0){
-            System.out.println("You're OVER budget: " + totalDifferent);
-        }
-        else if (totalDifferent < 0){
-            System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
-        }
-        else {System.out.println("You're okay for making 0 balance.");}
+        // double totalDifferent = budgetDifference(budgetList);
+        // if (totalDifferent > 0){
+        //     System.out.println("You're OVER budget: " + totalDifferent);
+        // }
+        // else if (totalDifferent < 0){
+        //     System.out.println("You're UNDER budget " + totalDifferent + ". Good job!");
+        // }
+        // else {System.out.println("You're okay for making 0 balance.");}
     
     }
 
