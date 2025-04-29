@@ -17,5 +17,21 @@ public class BudgetTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    void SpentTesting(){
+        // Arrange
+        Budget spentTest = new Budget();
+        
+        // Act
+        spentTest.add(new BudgetCategory("Rent", 2500, 3000));
+        double expected = 3000;
+        double actual = spentTest.totalSpent();
+
+        // Assert
+        assertEquals(expected, actual);
+
+    }
+
     
 }
