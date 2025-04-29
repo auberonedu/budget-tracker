@@ -16,18 +16,34 @@ public class BudgetApp {
         String fileName = args [0];
         Scanner scan = new Scanner (new File(fileName));
 
-        Map<String, Double> categories = new HashMap<>();
+        Map<String, BudgetCategory> categories = new HashMap<>();
 
         while(scan.hasNextLine()) {
-            String category;
-            double limit;
-            double spent;
+            String category = scan.nextLine();
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
 
             if(scan.hasNextLine()) scan.nextLine();
 
             BudgetCategory userCategory = new BudgetCategory(category, limit, spent);
-
             categories.put(category, userCategory);
+            
+
+            System.out.println("Category: " + category + "Limit: " + limit + "Spent: " + spent);
+        }
+
+        Scanner userScanner = new Scanner(System.in);
+
+        while(true) {
+            System.out.println("Enter a category: ");
+            String categoryName = userScanner.nextLine();
+
+            BudgetCategory category = categories.get(categoryName);
+            if(category == null) {
+                System.out.println("Please enter a category: ");
+            } else {
+                System.out.println(category);
+            }
         }
 
         
