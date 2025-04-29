@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Locale.Category;
 import org.junit.experimental.categories.Categories;
@@ -14,7 +16,20 @@ public class BudgetApp {
         String fileName = args [0];
         Scanner scan = new Scanner (new File(fileName));
 
-        
+        Map<String, Double> categories = new HashMap<>();
+
+        while(scan.hasNextLine()) {
+            String category;
+            double limit;
+            double spent;
+
+            if(scan.hasNextLine()) scan.nextLine();
+
+            BudgetCategory userCategory = new BudgetCategory(category, limit, spent);
+
+            categories.put(category, userCategory);
+        }
+
         
         // List<BudgetCategory> categories = new ArrayList<>();
 
