@@ -4,39 +4,48 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Locale.Category;
-
 import org.junit.experimental.categories.Categories;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class BudgetApp {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        List<BudgetCategory> categories = new ArrayList<>();
+    public static void main(String[] args) throws FileNotFoundException {
 
+        String fileName = args [0];
+        Scanner scan = new Scanner (new File(fileName));
 
-            while(scan.hasNextLine()) {
+        
+        
+        // List<BudgetCategory> categories = new ArrayList<>();
 
-            String category = scan.nextLine();
+        //     while(scan.hasNextLine()) {
 
-            double limit = scan.nextDouble();
-            double spent = scan.nextDouble();
+        //     String category = scan.nextLine();
+        //     double limit = scan.nextDouble();
+        //     double spent = scan.nextDouble();
 
-            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
-            categories.add(budgetCategory);
+        //     BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+        //     categories.add(budgetCategory);
+        //     System.out.println(budgetCategory);
 
-            // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();
+        //     // Consume \n after spent input 
+        //     if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            }
-            scan.close();
-            System.out.println("---Sorted---");
-            Collections.sort(categories, Collections.reverseOrder());
-            System.out.println(categories);
+        //     String limitString = String.format("$%.2f", limit);
+        //     String spentString = String.format("$%.2f", spent);
+        //     }
+        //     scan.close();
+        //     System.out.println("---Original---");
+        //     System.out.println(categories);
+        //     // // sorting
+        //     Collections.sort(categories, Collections.reverseOrder());
 
-            Collections.sort(categories);
-            System.out.println(categories);
-            System.out.println(budgetDifference(categories));
+        //     System.out.println("---Sorted---");
+        //     Collections.sort(categories); // the confirmed sorted from the reverse order
+        //     System.out.println(categories);
+
+        //     // prints out the total sum of each category 
+        //     System.out.println(budgetDifference(categories));
         }
 
     
