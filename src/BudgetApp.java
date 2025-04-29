@@ -2,7 +2,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 
@@ -36,6 +38,7 @@ public class BudgetApp {
 
         // Create a list of BudgetCategory
         List <BudgetCategory> budgetList = new ArrayList<>();
+        Map<String, BudgetCategory> budgetCategoryMap = new HashMap<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -47,12 +50,16 @@ public class BudgetApp {
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            // Add each of the categories scanned in the loop
-            budgetList.add(new BudgetCategory(category, limit, spent));
+            //2. Store each of the category, spent, limit scanned in the loop to a list and to a map
+            BudgetCategory myBudgetList = new BudgetCategory(category, limit, spent);
+            budgetList.add(myBudgetList);
+            budgetCategoryMap.put(category, myBudgetList);
+
 
             // String limitString = String.format("$%.2f", limit);
             // String spentString = String.format("$%.2f", spent);
 
+            
         }
             // From my understanding, the Most overspent will be what we spent minus limit. For example:
             // Dining out limit: 120, spent: 185. -> Overspent: 65. 
