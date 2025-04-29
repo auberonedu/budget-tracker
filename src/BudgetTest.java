@@ -33,6 +33,7 @@ public class BudgetTest {
 
     }
 
+    @Test
     void RemainderTesting(){
         // Arrange
         Budget remainderTest = new Budget();
@@ -47,7 +48,34 @@ public class BudgetTest {
 
     }
 
-    
+    @Test
+    void MultipleCategoriesTesting(){
+        // Arrange
+        Budget test = new Budget();
+        
+        // Act
+        test.add(new BudgetCategory("Rent", 2500, 3000));
+        test.add(new BudgetCategory("groceries", 500, 300));
+        test.add(new BudgetCategory("entertainment", 300, 185));
+
+        double totalLimitExpected = 3300;
+        double totalLimitActual = test.totalLimit();
+
+        double totalSpentExpected = 3485;
+        double totalSpentActual = test.totalSpent();
+
+        double remainderExpected = totalLimitExpected - totalSpentExpected;
+        double remainderActual = totalLimitActual - totalSpentActual;
+        
+
+        // Assert
+        assertEquals(totalLimitActual, totalLimitActual);
+        assertEquals(totalSpentExpected, totalSpentActual);
+        assertEquals(remainderExpected, remainderActual);
+
+    }
+
+
 
     
 }
