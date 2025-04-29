@@ -9,7 +9,6 @@ public class Budget {
     // A constructor that takes no arguments and initializes the Map to an empty HashMap.
     public Budget(){
         this.budgetMap = new HashMap<>();
-
     }
 
     // A public method "add" that adds a category to the Map with the name being the key and the value being the BudgetCategory. It should take a single BudgetCategory as an argument.
@@ -24,7 +23,6 @@ public class Budget {
         } else{
             return null;
         }
-
     }
 
     //A public method totalLimit that takes no arguments and returns a double representing the total limit across all the categories.
@@ -36,7 +34,6 @@ public class Budget {
         return total;
     }
 
-
     // A public method totalSpent that takes no arguments and returns a double representing the total spend across all the categories.
     public double totalSpent(){
         double total = 0;
@@ -46,7 +43,9 @@ public class Budget {
         return total;
     }
 
-
-    // A public method remainder that takes no arguments and returns a double representing how much money is left in the budget. If the budegt is over the limit, the returned value should be negative.
+    // A public method remainder that takes no arguments and returns a double representing how much money is left in the budget. If the budget is over the limit, the returned value should be negative.
+    public double remainder(){
+        return totalLimit() - totalSpent();
+    }
 }
 
