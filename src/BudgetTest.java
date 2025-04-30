@@ -36,5 +36,16 @@ public class BudgetTest {
 
         assertEquals(-250, actual);
     }
+    @Test
+    void checkingForEvenBudget() {
+        Budget budget = new Budget();
+        budget.add(new BudgetCategory("Transportation", 600, 600)); // under budget $100
+        budget.add(new BudgetCategory("Rent", 1500, 1500)); // balanced $0
+        budget.add(new BudgetCategory("Groceries", 350, 350)); // under budget by $150
+
+        double actual = budget.remainder();
+
+        assertEquals(0,actual);
+    }
 
 }

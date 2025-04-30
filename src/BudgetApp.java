@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Locale.Category;
-import org.junit.experimental.categories.Categories;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -55,9 +54,9 @@ public class BudgetApp {
                     System.out.println("You are exactly on budget");
                 }
             } else {
-                BudgetCategory category = categories.get(categoryName);
+                BudgetCategory category = budget.get(categoryName);
             if(category == null) {
-                System.out.println("(Category not found) Please enter a category: ");
+                System.out.println("(Category not found!) Please enter a category: ");
             } else {
                 System.out.println(category);
                  }
