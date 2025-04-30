@@ -13,6 +13,8 @@ import java.io.FileNotFoundException;
 public class BudgetApp {
     public static void main(String[] args) throws FileNotFoundException {
 
+        Budget budget = new Budget();
+
         String fileName = args [0];
         Scanner scan = new Scanner (new File(fileName));
 
@@ -29,11 +31,7 @@ public class BudgetApp {
             if(scan.hasNextLine()) scan.nextLine();
 
             BudgetCategory userCategory = new BudgetCategory(category, limit, spent);
-            categories.put(category, userCategory);
-
-            totalAmountSpent += spent;
-            totalBudgetLimit += limit;
-            
+            budget.add(userCategory);
 
             System.out.println("Category: " + category +" "+ " Limit: " + limit + " Spent: " + spent);
         }
@@ -48,7 +46,7 @@ public class BudgetApp {
                 break;
 
             } else if(categoryName.equalsIgnoreCase("summary")) {
-                double amountDifference = totalAmountSpent - totalBudgetLimit;
+                double amountDifference = budget.totalSpent() - budget.totalLimit();
                 if(amountDifference > 0) {
                     System.out.println("You are under budget by: $" + amountDifference);
                 } else if(amountDifference < 0) {
