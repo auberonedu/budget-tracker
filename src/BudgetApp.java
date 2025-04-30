@@ -18,6 +18,9 @@ public class BudgetApp {
 
         Map<String, BudgetCategory> categories = new HashMap<>();
 
+        double totalBudgetLimit = 0.0;
+        double totalAmountSpent = 0.0;
+
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
             double limit = scan.nextDouble();
@@ -27,25 +30,41 @@ public class BudgetApp {
 
             BudgetCategory userCategory = new BudgetCategory(category, limit, spent);
             categories.put(category, userCategory);
+
+            totalAmountSpent += spent;
+            totalBudgetLimit += limit;
             
 
-            System.out.println("Category: " + category + "Limit: " + limit + "Spent: " + spent);
+            System.out.println("Category: " + category +" "+ " Limit: " + limit + " Spent: " + spent);
         }
 
         Scanner userScanner = new Scanner(System.in);
 
         while(true) {
-            System.out.println("Enter a category: ");
+            System.out.println("Enter a category (or 'summary' or 'quit'): ");
             String categoryName = userScanner.nextLine();
 
-            BudgetCategory category = categories.get(categoryName);
+            if(categoryName.equalsIgnoreCase("quit")) {
+                break;
+
+            } else if(categoryName.equalsIgnoreCase("summary")) {
+                double amountDifference = totalAmountSpent - totalBudgetLimit;
+                if(amountDifference > 0) {
+                    System.out.println("You are under budget by: $" + amountDifference);
+                } else if(amountDifference < 0) {
+                    System.out.println("You are over budget by: $" + amountDifference);
+                } else {
+                    System.out.println("You are exactly on budget");
+                }
+            } else {
+                BudgetCategory category = categories.get(categoryName);
             if(category == null) {
-                System.out.println("Please enter a category: ");
+                System.out.println("(Category not found) Please enter a category: ");
             } else {
                 System.out.println(category);
+                 }
             }
         }
-
         
         // List<BudgetCategory> categories = new ArrayList<>();
 

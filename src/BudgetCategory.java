@@ -27,18 +27,18 @@ public class BudgetCategory implements Comparable<BudgetCategory> {
 
     @Override
     public String toString() {
-        return this.category + " " + this.limit + " " + this.spent;
+        return "Category: " + this.category + "Limit: " + this.limit +" "+ "Spent:  " + this.spent;
     }
 
     public int compareTo(BudgetCategory other) {
         double differenceResult = this.differenceResult(); 
-        double budgetVal = other.differenceResult();
+        double budgetValue = other.differenceResult();
 
-        if(differenceResult < budgetVal) {
+        if(differenceResult < budgetValue) {
             return -1;
         }
 
-        if(differenceResult > budgetVal) {
+        if(differenceResult > budgetValue) {
             return 1;
 
         } else {
