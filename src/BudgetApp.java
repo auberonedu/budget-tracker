@@ -14,11 +14,13 @@ public class BudgetApp {
 
         Scanner scan = new Scanner(new File(filename));
 
+        Budget budgets = new Budget();
+
         // BudgetCategory sample = new BudgetCategory("rent", 2000, 2200);
 
         // List<BudgetCategory> budgets = new ArrayList<>();
 
-        Map<String, BudgetCategory> budgetsMap = new HashMap<>();
+        //Map<String, BudgetCategory> budgetsMap = new HashMap<>();
 
         //System.out.println(sample.toString());
 
@@ -27,9 +29,9 @@ public class BudgetApp {
             double limit = scan.nextDouble();
             double spent = scan.nextDouble();
 
-            BudgetCategory budget = new BudgetCategory(category, limit, spent);
+            BudgetCategory budgetCat = new BudgetCategory(category, limit, spent);
 
-            budgetsMap.put(category, budget);
+            budgets.addBudgetCategory(budgetCat.getCategory(), budgetCat);
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
@@ -48,36 +50,44 @@ public class BudgetApp {
 
             if (askCat.equals("quit")){
                 break;
-            } 
-
-
-
-            if (budgetsMap.containsKey(askCat)){
-                System.out.println(
-                    // "\nCategory: " + budgetsMap.get(askCat).getCategory() +
-                    // "\nLimit: " + budgetsMap.get(askCat).getLimit() +
-                    // "\nActual: " + budgetsMap.get(askCat).getActual()
-                    budgetsMap.get(askCat).toString()
-                );
-            }  else if (askCat.equals("summary")){
-                int limitSum = 0;
-                int spentSum = 0;
-                for (String cat : budgetsMap.keySet()){
-                    limitSum += budgetsMap.get(cat).getLimit();
-                    spentSum += budgetsMap.get(cat).getActual();
-                }
-
-                int budgetResult = limitSum - spentSum;
-
-                if (budgetResult < 0){
-                    System.out.println("Overbudget by " + Math.abs(budgetResult));
-                } else {
-                    System.out.println("Stayed within or under budget by " + budgetResult);
-                }
+            } else if (askCat.equals("summary")){
+                System.out.println("total limit: " + budgets.totalLimit());
+                System.out.println("total spent: " + budgets.totalSpent());
+                System.out.println("remainder: " + budgets.budgetCheck());
             } else {
-                System.out.println("Budget category entered does not exist.");
+                System.out.println(budgets.getBudgetCategory(askCat).toString());
             }
 
+            
+            
+
+
+
+            // if (budgetsMap.containsKey(askCat)){
+            //     System.out.println(
+            //         // "\nCategory: " + budgetsMap.get(askCat).getCategory() +
+            //         // "\nLimit: " + budgetsMap.get(askCat).getLimit() +
+            //         // "\nActual: " + budgetsMap.get(askCat).getActual()
+            //         budgetsMap.get(askCat).toString()
+            //     );
+            // }  else if (askCat.equals("summary")){
+            //     int limitSum = 0;
+            //     int spentSum = 0;
+            //     for (String cat : budgetsMap.keySet()){
+            //         limitSum += budgetsMap.get(cat).getLimit();
+            //         spentSum += budgetsMap.get(cat).getActual();
+            //     }
+
+            //     int budgetResult = limitSum - spentSum;
+
+            //     if (budgetResult < 0){
+            //         System.out.println("Overbudget by " + Math.abs(budgetResult));
+            //     } else {
+            //         System.out.println("Stayed within or under budget by " + budgetResult);
+            //     }
+            // } else {
+            //     System.out.println("Budget category entered does not exist.");
+            // }
         }
 
         // System.out.println(budgets);
