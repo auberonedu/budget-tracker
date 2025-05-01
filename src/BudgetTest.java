@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BudgetTest {
     @Test
-    void testToString(){
+    void testTotalLimit(){
         Budget budgets = new Budget();
 
         BudgetCategory vacation = new BudgetCategory("vacation", 3000, 3300);
@@ -14,11 +14,51 @@ public class BudgetTest {
         budgets.addBudgetCategory(rent.getCategory(), rent);
         budgets.addBudgetCategory(grocer.getCategory(), grocer);
 
-        String testString = "Category: vacation\nLimit: 3000.0\nActual: 3300.0";
+        double totalSpent = 8000.0;
         
-        String actual = testCat.toString();
+        double actual = budgets.totalLimit();
 
 
-        assertEquals(testString, actual);
+        assertEquals(totalSpent, actual);
+    }
+
+    @Test
+    void testTotalSpent(){
+        Budget budgets = new Budget();
+
+        BudgetCategory vacation = new BudgetCategory("vacation", 3000, 3000);
+        BudgetCategory rent = new BudgetCategory("Rent", 4000, 4000);
+        BudgetCategory grocer = new BudgetCategory("Groceries", 1000, 800);
+
+        budgets.addBudgetCategory(vacation.getCategory(), vacation);
+        budgets.addBudgetCategory(rent.getCategory(), rent);
+        budgets.addBudgetCategory(grocer.getCategory(), grocer);
+
+        double totalSpent = 7800.0;
+        
+        double actual = budgets.totalSpent();
+
+
+        assertEquals(totalSpent, actual);
+    }
+
+    @Test
+    void testRemainder(){
+        Budget budgets = new Budget();
+
+        BudgetCategory vacation = new BudgetCategory("vacation", 3000, 3000);
+        BudgetCategory rent = new BudgetCategory("Rent", 4000, 4000);
+        BudgetCategory grocer = new BudgetCategory("Groceries", 1000, 800);
+
+        budgets.addBudgetCategory(vacation.getCategory(), vacation);
+        budgets.addBudgetCategory(rent.getCategory(), rent);
+        budgets.addBudgetCategory(grocer.getCategory(), grocer);
+
+        double remainder = 200.0;
+        
+        double actual = budgets.budgetCheck();
+
+
+        assertEquals(remainder, actual);
     }
 }
