@@ -39,6 +39,45 @@ public class BudgetApp {
             //                    " but the actual spend was " + spentString);
         }
 
+        Scanner uInput = new Scanner(System.in);
+
+        while (true){
+            System.out.print("Enter a category name: ");
+            String askCat = uInput.nextLine();
+
+            if (askCat.equals("quit")){
+                break;
+            } else if (askCat.equals("summary")){
+                int limitSum = 0;
+                int spentSum = 0;
+                for (String cat : budgetsMap.keySet()){
+                    limitSum += budgetsMap.get(cat).getLimit();
+                    spentSum += budgetsMap.get(cat).getActual();
+                }
+
+                int budgetResult = limitSum - spentSum;
+
+                if (budgetResult < 0){
+                    System.out.println("Overbudget by " + Math.abs(budgetResult));
+                } else {
+                    System.out.println("Stayed within or under budget by " + budgetResult);
+                }
+            }
+
+
+
+            if (budgetsMap.containsKey(askCat)){
+                System.out.println(
+                    "\nCategory: " + budgetsMap.get(askCat).getCategory() +
+                    "\nLimit: " + budgetsMap.get(askCat).getLimit() +
+                    "\nActual: " + budgetsMap.get(askCat).getActual()
+                );
+            } else {
+                System.out.println("Budget category entered does not exist.");
+            }
+
+        }
+
         // System.out.println(budgets);
         // System.out.println();
         // Collections.sort(budgets, Collections.reverseOrder());
