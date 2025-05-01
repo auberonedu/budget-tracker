@@ -13,13 +13,15 @@ public class Budget {
 
     // A public method "add" that adds a category to the Map with the name being the key and the value being the BudgetCategory. It should take a single BudgetCategory as an argument.
     public void add(BudgetCategory category){
-        this.budgetMap.put(category.getCategory(), category);
+        this.budgetMap.put(category.getCategory().toLowerCase().trim(), category);
     }
 
     //A public method "get" that gets a category from the Map by name. It should take a String as an argument and return a BudgetCategory. If the category is not present, it should return null.
+    // Enable to ignore the case-sensitive
     public BudgetCategory get(String categoryName){
-        if (this.budgetMap.containsKey(categoryName)){
-        return this.budgetMap.get(categoryName);
+        String loweCaseCategoryName = categoryName.toLowerCase();
+        if (this.budgetMap.containsKey(loweCaseCategoryName)){
+        return this.budgetMap.get(loweCaseCategoryName);
         } else{
             return null;
         }

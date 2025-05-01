@@ -40,6 +40,9 @@ public class BudgetApp {
         List <BudgetCategory> budgetList = new ArrayList<>();
         Map<String, BudgetCategory> budgetCategoryMap = new HashMap<>();
 
+        // Create an instance to for budget class
+        Budget budget = new Budget();
+
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
 
@@ -54,6 +57,9 @@ public class BudgetApp {
             BudgetCategory myBudgetList = new BudgetCategory(category, limit, spent);
             budgetList.add(myBudgetList);
             budgetCategoryMap.put(category, myBudgetList);
+
+            // Add value into our budget
+            budget.add(myBudgetList);
 
 
             // String limitString = String.format("$%.2f", limit);
@@ -71,40 +77,42 @@ public class BudgetApp {
 
             // While loop
             while(true){
-                System.out.println("Please enter the category that you're interested in: (Rent, Groceries, Dining Out, Transportation, Entertainment, Utilities)");
-                String categoryName = userScanner.nextLine();
+                System.out.println("Please enter the category that you're interested in: ");
+                String categoryName = userScanner.nextLine().trim();
 
                 if (categoryName.equalsIgnoreCase("quit")){
                     System.out.println("Thanks for stopping by!");
                     userScanner.close();
                     break;
                 } else if (categoryName.equalsIgnoreCase("summary")){
-                    double totalLimit = 0;
-                    double totalSpent = 0;
+                    double totalLimit = budget.totalLimit();
+                    double totalSpent = budget.totalSpent();
+                    double remainder = budget.remainder();
                     
 
                     // For loop
-                    for (BudgetCategory category : budgetCategoryMap.values()){
-                        totalLimit +=  category.getLimit();
-                        totalSpent+= category.getSpent();
-                    }
+                    // for (BudgetCategory category : budgetCategoryMap.values()){
+                    //     totalLimit +=  category.getLimit();
+                    //     totalSpent+= category.getSpent();
+                    // }
 
-                    double difference = totalSpent - totalLimit;
+                    // double difference = totalSpent - totalLimit;
                     System.out.println("Here's your Budget summary:");
                     System.out.println("Total of LIMIT: " + totalLimit);
                     System.out.println("Total of SPENT: " + totalSpent);
 
-                    if(difference > 0){
-                        System.out.println("You're OVER the budget!!! " + difference);
-                    } else if (difference < 0){
-                        System.out.println("You're UNDER the budget! " + difference);
+                    if(remainder > 0){
+                        System.out.println("You're OVER the budget!!! " + remainder);
+                    } else if (remainder< 0){
+                        System.out.println("You're UNDER the budget! " + Math.abs(remainder));
                     } else {
                         System.out.println("You're just making an EVEN! Better watch out.");
                     }
                 }
 
                 else {
-                    BudgetCategory myCategory = budgetCategoryMap.get(categoryName); 
+                    // Use budget.get(categoryName) instead of budgetCategoryMap.get(categoryName) to be able to ignore case-sensitive when user enter any category
+                    BudgetCategory myCategory = budget.get(categoryName); 
                 if(myCategory == null){
                     System.out.println("There is no match! Try again...");
                 } else {
