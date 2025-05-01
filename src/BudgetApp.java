@@ -5,29 +5,41 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        while(scan.hasNextLine()) {
-            String category = scan.nextLine();
+        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
 
-            double limit = scan.nextDouble();
-            double spent = scan.nextDouble();
+        System.out.println("Name: " + groceries.getName());
+        System.out.println("Budgeted Amount: $" + groceries.getLimit());
+        System.out.println("Actual Spent: $" + groceries.getSpend());
 
-            // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();
+        // Using toString
+        System.out.println(groceries);
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
-        }
+        // while(scan.hasNextLine()) {
+        // String category = scan.nextLine();
+
+        // double limit = scan.nextDouble();
+        // double spent = scan.nextDouble();
+
+        // // Consume \n after spent input
+        // if(scan.hasNextLine()) scan.nextLine();
+
+        // String limitString = String.format("$%.2f", limit);
+        // String spentString = String.format("$%.2f", spent);
+        // System.out.println("The budget limit for " + category + " was: " +
+        // limitString +
+        // " but the actual spend was " + spentString);
+        // }
     }
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
      * categories.
      * 
-     * This should be the sum of how much over/under budget each individual category is.
+     * This should be the sum of how much over/under budget each individual category
+     * is.
      * 
-     * If the person is under budget, the result will be negative. If they are over budget, the
+     * If the person is under budget, the result will be negative. If they are over
+     * budget, the
      * result will be positive.
      * 
      * @param categories the budget categories with the spend

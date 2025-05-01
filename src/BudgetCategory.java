@@ -28,7 +28,7 @@ public class BudgetCategory {
     @Override
     public String toString() {
         return "Category: " + name +
-                "\nBudgeted: $" + limit +
+                "\nBudget: $" + limit +
                 "\nSpent: $" + spend;
     }
 
