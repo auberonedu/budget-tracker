@@ -49,8 +49,9 @@ public class BudgetCategory implements Comparable<BudgetCategory>{
 
     @Override
     public String toString(){
-        return "Category: " + category + 
-        "\nLimit: " + limit + "\nActual: " + actual;
+        return "\nCategory: " + category +
+                    "\nLimit: " + limit +
+                    "\nActual: " + actual;
     }
     
 }

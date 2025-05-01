@@ -3,11 +3,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BudgetApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // Scanner scan = new Scanner(System.in);
         String filename = args[0];
 
@@ -47,7 +48,18 @@ public class BudgetApp {
 
             if (askCat.equals("quit")){
                 break;
-            } else if (askCat.equals("summary")){
+            } 
+
+
+
+            if (budgetsMap.containsKey(askCat)){
+                System.out.println(
+                    // "\nCategory: " + budgetsMap.get(askCat).getCategory() +
+                    // "\nLimit: " + budgetsMap.get(askCat).getLimit() +
+                    // "\nActual: " + budgetsMap.get(askCat).getActual()
+                    budgetsMap.get(askCat).toString()
+                );
+            }  else if (askCat.equals("summary")){
                 int limitSum = 0;
                 int spentSum = 0;
                 for (String cat : budgetsMap.keySet()){
@@ -62,16 +74,6 @@ public class BudgetApp {
                 } else {
                     System.out.println("Stayed within or under budget by " + budgetResult);
                 }
-            }
-
-
-
-            if (budgetsMap.containsKey(askCat)){
-                System.out.println(
-                    "\nCategory: " + budgetsMap.get(askCat).getCategory() +
-                    "\nLimit: " + budgetsMap.get(askCat).getLimit() +
-                    "\nActual: " + budgetsMap.get(askCat).getActual()
-                );
             } else {
                 System.out.println("Budget category entered does not exist.");
             }
