@@ -1,24 +1,110 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BudgetApp {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException {
+        // Scanner scan = new Scanner(System.in);
+        String filename = args[0];
+
+        Scanner scan = new Scanner(new File(filename));
+
+        Budget budgets = new Budget();
+
+        // BudgetCategory sample = new BudgetCategory("rent", 2000, 2200);
+
+        // List<BudgetCategory> budgets = new ArrayList<>();
+
+        //Map<String, BudgetCategory> budgetsMap = new HashMap<>();
+
+        //System.out.println(sample.toString());
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
-
             double limit = scan.nextDouble();
             double spent = scan.nextDouble();
+
+            BudgetCategory budgetCat = new BudgetCategory(category, limit, spent);
+
+            budgets.addBudgetCategory(budgetCat.getCategory(), budgetCat);
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
-            System.out.println("The budget limit for " + category + " was: " + limitString + 
-                               " but the actual spend was " + spentString);
+            // String limitString = String.format("$%.2f", limit);
+            // String spentString = String.format("$%.2f", spent);
+            // System.out.println("The budget limit for " + category + " was: " + limitString + 
+            //                    " but the actual spend was " + spentString);
         }
+
+        Scanner uInput = new Scanner(System.in);
+
+        while (true){
+            System.out.print("Enter a category name: ");
+            String askCat = uInput.nextLine();
+
+            if (askCat.equals("quit")){
+                break;
+            } else if (askCat.equals("summary")){
+                System.out.println("total limit: " + budgets.totalLimit());
+                System.out.println("total spent: " + budgets.totalSpent());
+                System.out.println("remainder: " + budgets.budgetCheck());
+            } else {
+                System.out.println(budgets.getBudgetCategory(askCat).toString());
+            }
+
+            
+            
+
+
+
+            // if (budgetsMap.containsKey(askCat)){
+            //     System.out.println(
+            //         // "\nCategory: " + budgetsMap.get(askCat).getCategory() +
+            //         // "\nLimit: " + budgetsMap.get(askCat).getLimit() +
+            //         // "\nActual: " + budgetsMap.get(askCat).getActual()
+            //         budgetsMap.get(askCat).toString()
+            //     );
+            // }  else if (askCat.equals("summary")){
+            //     int limitSum = 0;
+            //     int spentSum = 0;
+            //     for (String cat : budgetsMap.keySet()){
+            //         limitSum += budgetsMap.get(cat).getLimit();
+            //         spentSum += budgetsMap.get(cat).getActual();
+            //     }
+
+            //     int budgetResult = limitSum - spentSum;
+
+            //     if (budgetResult < 0){
+            //         System.out.println("Overbudget by " + Math.abs(budgetResult));
+            //     } else {
+            //         System.out.println("Stayed within or under budget by " + budgetResult);
+            //     }
+            // } else {
+            //     System.out.println("Budget category entered does not exist.");
+            // }
+        }
+
+        // System.out.println(budgets);
+        // System.out.println();
+        // Collections.sort(budgets, Collections.reverseOrder());
+        // System.out.println("Least Overspent");
+        // System.out.println(budgets);
+
+        // System.out.println();
+        // System.out.println("Most Overspent");
+        // Collections.sort(budgets);
+        // System.out.println(budgets);
+
+        // System.out.println("this month we saved: " + budgetDifference(budgets));
+
+        // System.out.println(budgets.get(0));
+
     }
 
     /**
@@ -37,6 +123,16 @@ public class BudgetApp {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+
+        int sum = 0;
+
+        for (BudgetCategory budget : categories){
+            double save =  budget.getLimit() - budget.getActual();
+
+            sum += save;
+        }
+
+        
+        return sum;
     }
 }
