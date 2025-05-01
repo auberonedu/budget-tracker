@@ -27,9 +27,9 @@ public class BudgetCategory {
     // adding a toString
     @Override
     public String toString() {
-        return "Category: " + name +
+        return "\nCategory: " + name +
                 "\nBudget: $" + limit +
-                "\nSpent: $" + spend;
+                "\nSpent: $" + spend + "\n";
     }
 
 } // end of class

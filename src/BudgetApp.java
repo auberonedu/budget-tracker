@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -5,30 +6,40 @@ public class BudgetApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
+        // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
 
-        System.out.println("Name: " + groceries.getName());
-        System.out.println("Budgeted Amount: $" + groceries.getLimit());
-        System.out.println("Actual Spent: $" + groceries.getSpend());
+        // System.out.println("Name: " + groceries.getName());
+        // System.out.println("Budgeted Amount: $" + groceries.getLimit());
+        // System.out.println("Actual Spent: $" + groceries.getSpend());
 
-        // Using toString
-        System.out.println(groceries);
+        // // Using toString
+        // System.out.println(groceries);
 
-        // while(scan.hasNextLine()) {
-        // String category = scan.nextLine();
+        // Creating a list
+        List<BudgetCategory> categoryList = new ArrayList<>();
 
-        // double limit = scan.nextDouble();
-        // double spent = scan.nextDouble();
+        while (scan.hasNextLine()) {
+            String category = scan.nextLine();
 
-        // // Consume \n after spent input
-        // if(scan.hasNextLine()) scan.nextLine();
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
 
-        // String limitString = String.format("$%.2f", limit);
-        // String spentString = String.format("$%.2f", spent);
-        // System.out.println("The budget limit for " + category + " was: " +
-        // limitString +
-        // " but the actual spend was " + spentString);
-        // }
+            // Consume \n after spent input
+            if (scan.hasNextLine())
+                scan.nextLine();
+
+            BudgetCategory item = new BudgetCategory(category, limit, spent);
+            categoryList.add(item);
+
+            String limitString = String.format("$%.2f", limit);
+            String spentString = String.format("$%.2f", spent);
+            System.out.println("The budget limit for " + category + " was: " +
+                    limitString +
+                    " but the actual spend was " + spentString);
+        }
+
+        System.out.println(categoryList);
+        System.out.println();
     }
 
     /**
