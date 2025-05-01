@@ -2,26 +2,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BudgetApp {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        // Scanner scan = new Scanner(System.in);
+        String filename = args[0];
+
+        Scanner scan = new Scanner(new File(filename));
 
         // BudgetCategory sample = new BudgetCategory("rent", 2000, 2200);
 
-        List<BudgetCategory> budgets = new ArrayList<>();
+        // List<BudgetCategory> budgets = new ArrayList<>();
+
+        Map<String, BudgetCategory> budgetsMap = new HashMap<>();
 
         //System.out.println(sample.toString());
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
-
             double limit = scan.nextDouble();
             double spent = scan.nextDouble();
 
             BudgetCategory budget = new BudgetCategory(category, limit, spent);
 
-            budgets.add(budget);
+            budgetsMap.put(category, budget);
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
@@ -32,20 +39,20 @@ public class BudgetApp {
             //                    " but the actual spend was " + spentString);
         }
 
-        System.out.println(budgets);
-        System.out.println();
-        Collections.sort(budgets, Collections.reverseOrder());
-        System.out.println("Least Overspent");
-        System.out.println(budgets);
+        // System.out.println(budgets);
+        // System.out.println();
+        // Collections.sort(budgets, Collections.reverseOrder());
+        // System.out.println("Least Overspent");
+        // System.out.println(budgets);
 
-        System.out.println();
-        System.out.println("Most Overspent");
-        Collections.sort(budgets);
-        System.out.println(budgets);
+        // System.out.println();
+        // System.out.println("Most Overspent");
+        // Collections.sort(budgets);
+        // System.out.println(budgets);
 
-        System.out.println("this month we saved: " + budgetDifference(budgets));
+        // System.out.println("this month we saved: " + budgetDifference(budgets));
 
-        System.out.println(budgets.get(0));
+        // System.out.println(budgets.get(0));
 
     }
 
