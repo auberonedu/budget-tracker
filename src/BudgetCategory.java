@@ -1,4 +1,4 @@
-public class BudgetCategory {
+public class BudgetCategory implements Comparable<BudgetCategory> {
     // instance variables
     private String name;
     private double limit;
@@ -30,6 +30,17 @@ public class BudgetCategory {
         return "\nCategory: " + name +
                 "\nBudget: $" + limit +
                 "\nSpent: $" + spend + "\n";
+    }
+
+    public double getOverUnderBudget() {
+        return limit - spend;
+    }
+
+    public int compareTo(BudgetCategory other) {
+        double thisDifference = this.getOverUnderBudget();
+        double otherDifference = other.getOverUnderBudget();
+
+        return Double.compare(otherDifference, thisDifference);
     }
 
 } // end of class
