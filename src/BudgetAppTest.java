@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BudgetAppTest {
     @Test
     public void testToString() {
@@ -52,5 +55,19 @@ public class BudgetAppTest {
 
         // Assert
         assertEquals(0, actual);
+    }
+
+    @Test
+    public void testBudgetDifference_UnderBudget() {
+        // Arrange
+        List<BudgetCategory> list = new ArrayList<>();
+        list.add(new BudgetCategory("Groceries", 500, 400)); // +100
+        list.add(new BudgetCategory("Transport", 200, 150)); // +50
+
+        // Act
+        int actual = (int) BudgetApp.budgetDifference(list);
+
+        // Assert
+        assertEquals(150, actual);
     }
 }

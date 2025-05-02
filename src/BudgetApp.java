@@ -41,8 +41,11 @@ public class BudgetApp {
 
         System.out.println(categoryList);
         System.out.println();
-        Collections.sort(categoryList);
+        Collections.sort(categoryList, Collections.reverseOrder());
         System.out.println(categoryList);
+
+        double totalDiff = budgetDifference(categoryList);
+        System.out.printf("TOTAL BUDGET DIFFERENCE: $%.2f", totalDiff);
     }
 
     /**
@@ -59,10 +62,18 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
+    public static double budgetDifference(List<BudgetCategory> categories) {
         // TODO: You will implement this method in Wave 5
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
-        return -1;
+
+        double totalDifference = 0.0;
+
+        for (BudgetCategory category : categories) {
+            totalDifference += category.getLimit() - category.getSpend();
+        }
+
+        return totalDifference;
+
     }
 }
