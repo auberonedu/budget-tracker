@@ -16,4 +16,18 @@ public class Budget {
    public BudgetCategory get(String name){
     return categoryMap.get(name);
    }
+   public double totalLimit(){
+    double totalLimit = 0;
+    for (BudgetCategory values : categoryMap.values()) {
+        totalLimit += values.getLimit();
+    }
+    return totalLimit;
+   }
+   public double totalSpent(){
+    double totalSpent = 0;
+    for (BudgetCategory values : categoryMap.values()) {
+        totalSpent += values.getSpent();
+    }
+    return totalSpent;
+   }
 }
