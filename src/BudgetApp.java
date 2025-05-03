@@ -3,7 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class BudgetApp {
@@ -13,6 +15,7 @@ public class BudgetApp {
 
         Scanner scan = new Scanner(new File(filename));
         List<BudgetCategory> budgetList = new ArrayList<>();
+        Map<String, BudgetCategory> budgetMapList = new HashMap<>();
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
 
@@ -21,15 +24,20 @@ public class BudgetApp {
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
+            
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
+            
             budgetList.add(budgetCategory);
+            budgetMapList.put(category, budgetCategory);
 
             String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
         }
         // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
         // System.out.println(groceries);
-        System.out.println(budgetList);
+
+        // System.out.println(budgetList);
+
         //This is smallest to largest in the sense that it is the least underbudget not over
         // Collections.sort(budgetList, Collections.reverseOrder());
 
