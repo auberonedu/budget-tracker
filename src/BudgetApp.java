@@ -51,13 +51,30 @@ public class BudgetApp {
         while (true) {
             System.out.println("Enter a category name: ");
             String catagoryName = budgetScanner.nextLine();
-
+            
             BudgetCategory myCategory = budgetMapList.get(catagoryName);
-            if (myCategory == null) {
-                System.out.println("No such category");
+            if(catagoryName.toLowerCase().equals("summary")){
+                double totalLimit = 0;
+                double totalSpent = 0;
+                for (BudgetCategory budgetCategory : budgetList) {
+                    totalLimit += budgetCategory.getLimit();
+                    totalSpent += budgetCategory.getSpent();
+                }
+                System.out.println();
+                System.out.println("Total limit: " + totalLimit);
+                System.out.println("Total Spent: -" + totalSpent);
+                System.out.println("You went overbudget by: " + budgetDifference(budgetList) +"$");
+                System.out.println();
             } else{
-                System.out.println(myCategory);
+                if (myCategory == null) {
+                    System.out.println();;
+                    System.out.println("No such category");
+                }  else{
+                    System.out.println();;
+                    System.out.println(myCategory);
+                }
             }
+            
         }
     }
 
