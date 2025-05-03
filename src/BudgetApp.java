@@ -16,6 +16,7 @@ public class BudgetApp {
         Scanner scan = new Scanner(new File(filename));
         List<BudgetCategory> budgetList = new ArrayList<>();
         Map<String, BudgetCategory> budgetMapList = new HashMap<>();
+
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
 
@@ -24,7 +25,7 @@ public class BudgetApp {
 
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
-            
+
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
             
             budgetList.add(budgetCategory);
@@ -45,6 +46,19 @@ public class BudgetApp {
         // System.out.println(budgetList);
         // System.out.println();
         // System.out.println("Overall over/under budget: " + budgetDifference(budgetList) +"$");
+
+        Scanner budgetScanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter a category name: ");
+            String catagoryName = budgetScanner.nextLine();
+
+            BudgetCategory myCategory = budgetMapList.get(catagoryName);
+            if (myCategory == null) {
+                System.out.println("No such category");
+            } else{
+                System.out.println(myCategory);
+            }
+        }
     }
 
     /**
