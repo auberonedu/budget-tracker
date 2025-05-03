@@ -6,7 +6,7 @@ Please fork and clone this repository. Remember to fork before you clone. MAKE C
 Take a bit of time to read through BudgetApp.java and sampleSpending.txt. Discuss with your partner what it's doing and make a predicition of what the output will be when you run it. Then run the below command (make sure you are in the budget-tracker directory):
 
 ```
-javac -cp lib/junit-platform-console-standalone-1.11.4.jar src/*.java && java -cp src BudgetApp < sampleSpending.txt
+javac -cp lib/junit-platform-console-standalone-1.11.4.jar src/*.java && java -cp src BudgetApp sampleSpending.txt
 ```
 
 Discuss whether the output matched what you expected. You do not need to write or commit anything for this wave.
