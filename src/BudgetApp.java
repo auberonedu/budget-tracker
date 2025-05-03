@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,18 @@ import java.util.Scanner;
 
 public class BudgetApp {
     public static void main(String[] args) throws FileNotFoundException{
+        //7. Modify BudgetApp so that it uses Budget and exposes its functionality to the user.
+        Budget budget = new Budget();
+
+        budget.add(new BudgetCategory("sushi", 100, 100000));
+        budget.add(new BudgetCategory("games", 100, 200));
+        budget.add(new BudgetCategory("merchandise", 100, 100));
+
+        System.out.println("Total Limit: " + budget.totalLimit());
+        System.out.println("Total Spent: " + budget.totalSpent());
+        System.out.println("Remainder: " + budget.remainder());
+        System.out.println();
+      
         // Scanner scan = new Scanner(System.in);
         String filename = args[0];
 
