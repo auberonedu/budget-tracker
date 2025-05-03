@@ -30,4 +30,7 @@ public class Budget {
     }
     return totalSpent;
    }
+   public double remainder(){
+    return totalLimit() - totalSpent();
+   }
 }
