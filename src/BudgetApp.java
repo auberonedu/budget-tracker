@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -5,13 +7,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BudgetApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // BudgetCategory groceries = new BudgetCategory("Groceries", 500, 401);
         // BudgetCategory rent = new BudgetCategory("Rent", 1500, 1500);
 
         // System.out.println(groceries.toString());
 
-        Scanner scan = new Scanner(System.in);
+        // Scanner scan = new Scanner(System.in);
+        String filename = args[0];
+
+        Scanner scan = new Scanner(new File(filename));
+        
         List<BudgetCategory> myBudgetList = new ArrayList<>();
 
         while (scan.hasNextLine()) {
