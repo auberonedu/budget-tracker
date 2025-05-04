@@ -1,8 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +18,8 @@ public class BudgetApp {
         Scanner scan = new Scanner(new File(filename));
         
         // List<BudgetCategory> myBudgetList = new ArrayList<>();
-        Map<String, BudgetCategory> myBudget = new HashMap<>();
+        // Map<String, BudgetCategory> myBudget = new HashMap<>();
+        Budget myBudget = new Budget();
 
         while (scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -39,7 +37,7 @@ public class BudgetApp {
             BudgetCategory budget = new BudgetCategory(category, Double.parseDouble(limitString),
                     Double.parseDouble(spentString));
 
-            myBudget.put(category, budget);
+            myBudget.add(budget);
             // System.out.println("The budget limit for " + category + " was: " +
             // limitString +
             // " but the actual spend was " + spentString);
@@ -58,17 +56,17 @@ public class BudgetApp {
 
             if (selectedCategory.equalsIgnoreCase("quit")) {
                 break;
-            } else if (myBudget.containsKey(selectedCategory)) {
+            } else if (myBudget.get(selectedCategory) != null) {
                 System.out.println(myBudget.get(selectedCategory));
             } else if (selectedCategory.equalsIgnoreCase("summary")) { 
-                double totalLimit = 0.0;
-                double totalSpent = 0.0;
-                for (var entry: myBudget.entrySet()) {
-                    totalLimit += entry.getValue().getLimit();
-                    totalSpent += entry.getValue().getSpending();
-                }
+                double totalLimit = myBudget.totalLimit();
+                double totalSpent = myBudget.totalSpent();
+                // for (var entry: myBudget.entrySet()) {
+                //     totalLimit += entry.getValue().getLimit();
+                //     totalSpent += entry.getValue().getSpending();
+                // }
 
-                double overUnderSpent = totalLimit - totalSpent;
+                double overUnderSpent = myBudget.remainder();
 
                 System.out.println("Total limit of the budget: " + totalLimit);
                 System.out.println("Total spent of the budget: " + totalSpent);
