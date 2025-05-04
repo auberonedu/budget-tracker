@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BudgetApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+
+        String filename = args[0];
+        Scanner scanFile = new Scanner(new File(filename));
+
         Scanner scan = new Scanner(System.in);
         List<BudgetCategory> budgets = new ArrayList<>();
         
@@ -20,7 +24,10 @@ public class BudgetApp {
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
             budgets.add(budgetCategory);
             // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();                    
+            if(scan.hasNextLine()) scan.nextLine();
+
+
+                               
         }
         scan.close();
 
@@ -34,6 +41,8 @@ public class BudgetApp {
         Collections.sort(budgets);
         System.out.println("Most Overspent: " + budgets);
         System.out.println();
+
+     
         
         System.out.println("This month we save: " + budgetDifference(budgets));
     }
@@ -64,3 +73,5 @@ public class BudgetApp {
         return sum;
     }
 }
+
+

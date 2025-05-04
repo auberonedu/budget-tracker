@@ -55,4 +55,3 @@ public class BudgetAppTest {
         assertEquals(actual, groceries.toString());
     }
 }
-
