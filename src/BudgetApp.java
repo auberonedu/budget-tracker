@@ -3,7 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class BudgetApp {
@@ -18,7 +20,8 @@ public class BudgetApp {
 
         Scanner scan = new Scanner(new File(filename));
         
-        List<BudgetCategory> myBudgetList = new ArrayList<>();
+        // List<BudgetCategory> myBudgetList = new ArrayList<>();
+        Map<String, BudgetCategory> myBudget = new HashMap<>();
 
         while (scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -36,16 +39,16 @@ public class BudgetApp {
             BudgetCategory budget = new BudgetCategory(category, Double.parseDouble(limitString),
                     Double.parseDouble(spentString));
 
-            myBudgetList.add(budget);
+            myBudget.put(category, budget);
             // System.out.println("The budget limit for " + category + " was: " +
             // limitString +
             // " but the actual spend was " + spentString);
         }
 
-        System.out.println(myBudgetList);
-        Collections.sort(myBudgetList, Collections.reverseOrder());
-        System.out.println(myBudgetList);
-        System.out.println("The budgetDifference : " + budgetDifference(myBudgetList));
+        System.out.println(myBudget);
+        // Collections.sort(myBudgetList, Collections.reverseOrder());
+        // System.out.println(myBudgetList);
+        // System.out.println("The budgetDifference : " + budgetDifference(myBudgetList));
     }
 
     /**
