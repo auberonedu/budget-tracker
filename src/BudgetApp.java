@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -29,20 +28,47 @@ public class BudgetApp {
                 scanFile.nextLine();
             }
         }
-        scanFile.close();     
+        scanFile.close();
+
+        // Add a loop where the user is prompted via System.in. It should ask the user for category names. 
+        //When a category is given, information about that category is given. If the category is not present,
+        //a message is shown to the user letting them know that the category is not there. If the user types 'quit', then the loop should end.
         
-                Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
         while(true) {
 
-            System.out.println("Enter a category from your budget: ");
-            String userInput = scanner.nextLine().toUpperCase();
+        System.out.println("Enter a category from your budget: ");
+        String userInput = scanner.nextLine().toUpperCase();
         
         if (userInput.equalsIgnoreCase("quit")) {
             System.out.println("This month's budget difference was " + budgetDifference(budgets) + " dollar(s).");
             System.out.println("Application is closing... \nSee you next time!");
             break;
         }
+        if (userInput.equalsIgnoreCase("summary")) {
+            
+            double totalLimit = 0.0;
+            double totalSpent = 0.0;
+            double totalLimitPerformance = 0.0;
+            
+            for(Map.Entry<String, BudgetCategory> entry : budgets.entrySet()) {
+                String category = entry.getKey();
+                BudgetCategory budgetCategory = entry.getValue();
+                double limit = budgetCategory.getLimit();
+                double spent = budgetCategory.getActual();
+                double limitPerformance = budgetCategory.limitPerformance();
+
+                System.out.println("Category: " + category + ", Limit: " + limit + ", Spent: " + spent + ", Performance: " + limitPerformance);
+                
+                totalLimit += limit;
+                totalSpent += spent;
+                totalLimitPerformance += limitPerformance;
+            }
+            
+            System.out.println("Total Limit: " + totalLimit + ", Total Spent: " + totalSpent + ", Total Performance: " + totalLimitPerformance);
+            continue;
+    }
         if (budgets.containsKey(userInput)) {
             System.out.println("Category: " + userInput);
             System.out.println("Budget goal: " + budgets.get(userInput).getLimit());
@@ -53,6 +79,7 @@ public class BudgetApp {
     }
         scanner.close();
     }
+
 
 
     /**
