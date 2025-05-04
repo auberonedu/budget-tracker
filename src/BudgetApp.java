@@ -80,7 +80,7 @@ public class BudgetApp {
         scanner.close();
     }
 
-
+    
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
@@ -94,15 +94,10 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
-        // TODO: You will implement this method in Wave 5
-        // Note that this method SHOULD NOT have a print statement.
-        // It should instead return the value.
-        
+    public static int budgetDifference(Map<String, BudgetCategory> budgets) {
         int sum = 0;
-
-        for (BudgetCategory budget : categories) {
-            double save =  budget.getActual() - budget.getLimit();
+        for (BudgetCategory budget : budgets.values()) {
+            double save = budget.getActual() - budget.getLimit();
             sum += save;
         }
         return sum;
