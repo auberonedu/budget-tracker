@@ -1,7 +1,8 @@
-import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class BudgetApp {
     public static void main(String[] args) throws FileNotFoundException {
@@ -9,40 +10,25 @@ public class BudgetApp {
         String filename = args[0];
         Scanner scanFile = new Scanner(new File(filename));
 
-        Scanner scan = new Scanner(System.in);
-        List<BudgetCategory> budgets = new ArrayList<>();
-        
+        Map<String, BudgetCategory> budgets = new HashMap<>();
+
         //BudgetCategory electronics = new BudgetCategory("tablet", 500, 200);
         //System.out.println(electronics.toString());
         
-        while(scan.hasNextLine()) {
-            String category = scan.nextLine();
-
-            double limit = scan.nextDouble();
-            double spent = scan.nextDouble();
+        while(scanFile.hasNextLine()) {
+            String category = scanFile.nextLine().toUpperCase();
+            double limit = scanFile.nextDouble();
+            double actual = scanFile.nextDouble();
             
-            BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
-            budgets.add(budgetCategory);
-            // Consume \n after spent input 
-            if(scan.hasNextLine()) scan.nextLine();
-
-
-                               
+            BudgetCategory budgetCategory = new BudgetCategory(category, limit, actual);
+            
+            budgets.put(category, budgetCategory);
+            
+            if (scanFile.hasNextLine()) {
+                scanFile.nextLine();
+            }
         }
-        scan.close();
-
-        System.out.println(budgets);
-        System.out.println();
-        
-        Collections.sort(budgets, Collections.reverseOrder());
-        System.out.println("Least Overspent: " + budgets);
-        System.out.println();
-        
-        Collections.sort(budgets);
-        System.out.println("Most Overspent: " + budgets);
-        System.out.println();
-
-     
+        scanFile.close();     
         
         System.out.println("This month we save: " + budgetDifference(budgets));
     }
