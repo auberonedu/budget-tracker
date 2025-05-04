@@ -56,10 +56,23 @@ public class BudgetApp {
 
             String selectedCategory = console.nextLine();
 
-            if (selectedCategory.toLowerCase() == "quit") {
+            if (selectedCategory.equalsIgnoreCase("quit")) {
                 break;
             } else if (myBudget.containsKey(selectedCategory)) {
                 System.out.println(myBudget.get(selectedCategory));
+            } else if (selectedCategory.equalsIgnoreCase("summary")) { 
+                double totalLimit = 0.0;
+                double totalSpent = 0.0;
+                for (var entry: myBudget.entrySet()) {
+                    totalLimit += entry.getValue().getLimit();
+                    totalSpent += entry.getValue().getSpending();
+                }
+
+                double overUnderSpent = totalLimit - totalSpent;
+
+                System.out.println("Total limit of the budget: " + totalLimit);
+                System.out.println("Total spent of the budget: " + totalSpent);
+                System.out.println("Total over/under spent of the budget: " + overUnderSpent);            
             } else {
                 System.out.println(selectedCategory + " is not correct the category.");
             }
