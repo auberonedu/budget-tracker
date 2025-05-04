@@ -45,10 +45,25 @@ public class BudgetApp {
             // " but the actual spend was " + spentString);
         }
 
-        System.out.println(myBudget);
+        // System.out.println(myBudget);
         // Collections.sort(myBudgetList, Collections.reverseOrder());
         // System.out.println(myBudgetList);
         // System.out.println("The budgetDifference : " + budgetDifference(myBudgetList));
+
+        Scanner console = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a category: ");
+
+            String selectedCategory = console.nextLine();
+
+            if (selectedCategory.toLowerCase() == "quit") {
+                break;
+            } else if (myBudget.containsKey(selectedCategory)) {
+                System.out.println(myBudget.get(selectedCategory));
+            } else {
+                System.out.println(selectedCategory + " is not correct the category.");
+            }
+        }
     }
 
     /**
