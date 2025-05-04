@@ -18,4 +18,24 @@ public class Budget {
         }
         return null;
     }
+
+    public double totalLimit() {
+        double totalLimit = 0.0;
+        for (var entry: budgetMap.entrySet()) {
+            totalLimit += entry.getValue().getLimit();
+        }
+        return totalLimit;
+    }
+
+    public double totalSpent() {
+        double totalSpent = 0.0;
+        for (var entry: budgetMap.entrySet()) {
+            totalSpent += entry.getValue().getSpending();
+        }
+        return totalSpent;
+    }
+
+    public double remainder() {
+        return totalLimit() - totalSpent();
+    }
 }
