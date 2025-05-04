@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -30,8 +31,29 @@ public class BudgetApp {
         }
         scanFile.close();     
         
-        System.out.println("This month we save: " + budgetDifference(budgets));
+                Scanner scanner = new Scanner(System.in);
+        
+        while(true) {
+
+            System.out.println("Enter a category from your budget: ");
+            String userInput = scanner.nextLine().toUpperCase();
+        
+        if (userInput.equalsIgnoreCase("quit")) {
+            System.out.println("This month's budget difference was " + budgetDifference(budgets) + " dollar(s).");
+            System.out.println("Application is closing... \nSee you next time!");
+            break;
+        }
+        if (budgets.containsKey(userInput)) {
+            System.out.println("Category: " + userInput);
+            System.out.println("Budget goal: " + budgets.get(userInput).getLimit());
+            System.out.println("Spent: " + budgets.get(userInput).getActual());
+        } else {
+            System.out.println("category: " + userInput + " does not exist.");
+        }
     }
+        scanner.close();
+    }
+
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
