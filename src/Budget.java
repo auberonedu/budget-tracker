@@ -7,4 +7,18 @@ public class Budget {
     public Budget() {
         categories = new HashMap<>();
     }
+    public void add(BudgetCategory category) {
+        categories.put(category.getCategory(), category);
+    }
+    public BudgetCategory get(String name) {
+        return categories.get(name);
+    }
+
+    public double totalLimit() {
+        double total = 0.0;
+        for (BudgetCategory category : categories.values()) {
+            total += category.getLimit();
+        }
+        return total;
+    }
 }
