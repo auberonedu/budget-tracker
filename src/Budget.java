@@ -13,4 +13,9 @@ public class Budget {
     public void add(BudgetCategory category) {
         categories.put(category.getCategory(), category);
     }
+
+    // "get" method
+    public BudgetCategory get(String name) {
+        return categories.get(name);
+    }
 }
