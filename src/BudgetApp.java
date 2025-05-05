@@ -1,7 +1,9 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 
@@ -16,7 +18,8 @@ public class BudgetApp {
         String filename = args[0];
         Scanner scan = new Scanner(new File(filename));
 
-        List<BudgetCategory> categories = new ArrayList<>();
+        //List<BudgetCategory> categories = new ArrayList<>();
+        Map<String, BudgetCategory> categoriesMap = new HashMap<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
