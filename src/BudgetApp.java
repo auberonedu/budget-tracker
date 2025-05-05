@@ -18,8 +18,7 @@ public class BudgetApp {
         String filename = args[0];
         Scanner scan = new Scanner(new File(filename));
 
-        //List<BudgetCategory> categories = new ArrayList<>();
-        Map<String, BudgetCategory> categoriesMap = new HashMap<>();
+        Map<String, BudgetCategory> categories = new HashMap<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -30,17 +29,37 @@ public class BudgetApp {
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            String limitString = String.format("$%.2f", limit);
+            categories.put(category, new BudgetCategory(category, limit, spent));
+
+            /*String limitString = String.format("$%.2f", limit);
             String spentString = String.format("$%.2f", spent);
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
-            categories.add(budgetCategory);
+            categories.add(budgetCategory); */
         }
 
-        // Sort from most to least overspent category
+        /* // Sort from most to least overspent category
         Collections.sort(categories, Collections.reverseOrder());
 
         for (BudgetCategory bc : categories) {
             System.out.println(bc);
+        } */
+
+        Scanner userScanner = new Scanner(System.in);
+
+        while(true) {
+            System.out.println("Enter the name of the category: ");
+            String userInput = userScanner.nextLine();
+
+            if (userInput.equalsIgnoreCase("quit")) {
+                break;
+            }
+
+            if(categories.containsKey(userInput)) {
+                BudgetCategory myCategory = categories.get(userInput);
+                System.out.println(categories.get(userInput));
+            } else {
+                System.out.println("Category not found");
+            }
         }
     }
 
