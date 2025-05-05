@@ -36,21 +36,59 @@ public class BudgetApp {
             // System.out.println(name + ": " + "APR: " + aprString + " Balance: " + balanceString);
         }
 
-        Scanner userInput = new Scanner(System.in);
-        String input = "";
-        while (true) {
-            System.out.print("Enter a category name to view details: ");
-            input = userInput.nextLine();
+    Scanner userInput = new Scanner(System.in);
+    String input = "";
+    BudgetCategory lastSelectedCategory = null;
 
-            BudgetCategory category = categoryMap.get(input); 
+    System.out.println("\nType a category name to view it.");
+    System.out.println("Type 'summary' to see budget info for the selected category.");
+    System.out.println("Type 'quit' to exit.");
 
-            System.out.println(category);
-        
-            if (input.equalsIgnoreCase("quit")) {
-                System.out.println("Exiting category lookup.");
-                break;
-            }
+    while (true) {
+        System.out.print("Enter input: ");
+        input = userInput.nextLine();
+
+        if (input.equalsIgnoreCase("quit")) {
+            System.out.println("Exiting category lookup.");
+            break;
         }
+
+        if (input.equalsIgnoreCase("summary")) {
+            if (lastSelectedCategory == null) {
+                System.out.println("No category selected yet. Enter a category name first.");
+            } else {
+                double limit = lastSelectedCategory.getLimit();
+                double spent = lastSelectedCategory.getSpent();
+                double difference = spent - limit;
+
+                System.out.printf("Summary for category: %s%n", lastSelectedCategory.getCategory());
+                System.out.printf("  Limit: $%.2f%n", limit);
+                System.out.printf("  Spent: $%.2f%n", spent);
+
+                if (difference > 0) {
+                    System.out.printf("  OVER budget by $%.2f%n", difference);
+                } else if (difference < 0) {
+                    System.out.printf("  UNDER budget by $%.2f%n", -difference);
+                } else {
+                    System.out.println("  Exactly on budget.");
+                }
+            }
+            continue;
+        }
+
+        // Try to find the category
+        BudgetCategory category = categoryMap.get(input);
+
+        if (category != null) {
+            lastSelectedCategory = category;
+            System.out.println(category); // Assumes BudgetCategory.toString() is defined
+        } else {
+            System.out.println("Category '" + input + "' not found.");
+        }
+    }
+    }
+}
+            
     
 
         // Use a for loop for repeated input
@@ -93,7 +131,7 @@ public class BudgetApp {
             // System.out.println("The budget limit for " + category + " was: " + limitString + 
             //                    " but the actual spend was " + spentString);
         
-    }
+    
 
 
     /**
@@ -114,4 +152,4 @@ public class BudgetApp {
     //     // It should instead return the value.
     //     return -1;
     // }
-}
+
