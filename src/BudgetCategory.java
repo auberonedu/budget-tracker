@@ -20,6 +20,9 @@ public class BudgetCategory {
     public double getSpent() {
         return spent;
     }
+    public double getDifference() {
+        return limit - spent; // positive means under budget
+    }
 
     @Override
 
@@ -27,5 +30,12 @@ public class BudgetCategory {
         return this.category + " " + this.limit + " " + this.spent;
     }
 
+  
+    public int compareTo(BudgetCategory other) {
+        double thisDiff = this.getDifference();
+        double otherDiff = other.getDifference();
+
+        return Double.compare(otherDiff, thisDiff); 
+    }
 
 }

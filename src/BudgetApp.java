@@ -1,10 +1,14 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BudgetApp {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException{
+
+        String filename = args[0];
+        Scanner scan = new Scanner(new File(filename));
 
         List<BudgetCategory> categories = new ArrayList<>();
 
