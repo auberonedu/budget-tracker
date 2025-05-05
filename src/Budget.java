@@ -1,0 +1,5 @@
+import java.util.Map;
+
+public class Budget {
+    private Map<String, BudgetCategory> categories;
+}
