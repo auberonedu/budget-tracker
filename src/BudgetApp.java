@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.io.*;
 
@@ -17,9 +15,10 @@ public class BudgetApp {
         }
 
         
-        Scanner scan = new Scanner(new File(args[0]));
-        Map<String, BudgetCategory> categories = new HashMap<>();
+        Budget budget = new Budget();
 
+        
+        Scanner scan = new Scanner(new File(args[0]));
         while (scan.hasNextLine()) {
             String category = scan.nextLine();
             double limit = scan.nextDouble();
@@ -29,11 +28,11 @@ public class BudgetApp {
             if (scan.hasNextLine()) scan.nextLine();
 
             BudgetCategory bc = new BudgetCategory(category, limit, spent);
-            categories.put(category, bc);
+            budget.add(bc);
         }
 
         
-        List<BudgetCategory> sorted = new ArrayList<>(categories.values());
+        List<BudgetCategory> sorted = new ArrayList<>(budget.getAll().values());
         sorted.sort(Collections.reverseOrder());
 
         
@@ -42,7 +41,7 @@ public class BudgetApp {
         }
 
         
-        int total = budgetDifference(categories);
+        int total = (int)(budget.totalSpent() - budget.totalLimit());
         System.out.println("Total budget difference: " + total);
 
         
@@ -56,10 +55,10 @@ public class BudgetApp {
             }
 
             if (userInput.equalsIgnoreCase("summary")) {
-                double limit = totalLimit(categories);
-                double spent = totalSpent(categories);
-                double remaining = remainder(categories);
-            
+                double limit = budget.totalLimit();
+                double spent = budget.totalSpent();
+                double remaining = budget.remainder();
+
                 System.out.println("Total budget limit: " + limit);
                 System.out.println("Total spent: " + spent);
                 System.out.println("Remaining (or over): " + remaining);
@@ -67,7 +66,7 @@ public class BudgetApp {
             }
 
             
-            BudgetCategory found = categories.get(userInput);
+            BudgetCategory found = budget.get(userInput);
             if (found != null) {
                 System.out.println(found);
             } else {
@@ -75,46 +74,4 @@ public class BudgetApp {
             }
         }
     }
-
-    /**
-     * Returns overall how much over/under budget a person is given a list of their
-     * categories.
-     * 
-     * This should be the sum of how much over/under budget each individual category is.
-     * 
-     * If the person is under budget, the result will be negative. If they are over budget, the
-     * result will be positive.
-     * 
-     * @param categories the budget categories with the spend
-     * @return the total amount over/under budget
-     */
-    public static int budgetDifference(Map<String, BudgetCategory> categories) {
-        int total = 0;
-        for (BudgetCategory c : categories.values()) {
-            total += c.getSpent() - c.getLimit();
-        }
-        return total;
-    }
-
-    public static double totalLimit(Map<String, BudgetCategory> categories) {
-        double total = 0;
-        for (BudgetCategory bc : categories.values()) {
-            total += bc.getLimit();
-        }
-        return total;
-    }
-    
-    public static double totalSpent(Map<String, BudgetCategory> categories) {
-        double total = 0;
-        for (BudgetCategory bc : categories.values()) {
-            total += bc.getSpent();
-        }
-        return total;
-    }
-    
-    public static double remainder(Map<String, BudgetCategory> categories) {
-        return totalLimit(categories) - totalSpent(categories);
-    }
-    
-
 }
