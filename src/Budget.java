@@ -8,4 +8,9 @@ public class Budget {
     public Budget() {
         categories = new HashMap<>();
     }
+
+    // "add" method
+    public void add(BudgetCategory category) {
+        categories.put(category.getCategory(), category);
+    }
 }
