@@ -48,11 +48,22 @@ public class BudgetApp {
         
         Scanner input = new Scanner(System.in); 
         while (true) {
-            System.out.print("Enter a category name (or 'quit' to exit): ");
+            System.out.print("Enter a category name, 'summary' for totals, or 'quit' to exit: ");
             String userInput = input.nextLine();
 
             if (userInput.equalsIgnoreCase("quit")) {
                 break;
+            }
+
+            if (userInput.equalsIgnoreCase("summary")) {
+                double limit = totalLimit(categories);
+                double spent = totalSpent(categories);
+                double remaining = remainder(categories);
+            
+                System.out.println("Total budget limit: " + limit);
+                System.out.println("Total spent: " + spent);
+                System.out.println("Remaining (or over): " + remaining);
+                continue;
             }
 
             
@@ -84,4 +95,26 @@ public class BudgetApp {
         }
         return total;
     }
+
+    public static double totalLimit(Map<String, BudgetCategory> categories) {
+        double total = 0;
+        for (BudgetCategory bc : categories.values()) {
+            total += bc.getLimit();
+        }
+        return total;
+    }
+    
+    public static double totalSpent(Map<String, BudgetCategory> categories) {
+        double total = 0;
+        for (BudgetCategory bc : categories.values()) {
+            total += bc.getSpent();
+        }
+        return total;
+    }
+    
+    public static double remainder(Map<String, BudgetCategory> categories) {
+        return totalLimit(categories) - totalSpent(categories);
+    }
+    
+
 }
