@@ -75,13 +75,11 @@ public class BudgetApp {
             }
             continue;
         }
-
-        // Try to find the category
         BudgetCategory category = categoryMap.get(input);
 
         if (category != null) {
             lastSelectedCategory = category;
-            System.out.println(category); // Assumes BudgetCategory.toString() is defined
+            System.out.println(category); 
         } else {
             System.out.println("Category '" + input + "' not found.");
         }
