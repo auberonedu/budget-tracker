@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.*;
 
@@ -15,7 +17,7 @@ public class BudgetApp {
         }
 
         Scanner scan = new Scanner(new File(args[0]));
-        List<BudgetCategory> categories = new ArrayList<>();
+        Map<String, BudgetCategory> categories = new HashMap<>();
 
         
         while (scan.hasNextLine()) {
@@ -27,22 +29,22 @@ public class BudgetApp {
             if (scan.hasNextLine()) scan.nextLine();
 
             BudgetCategory bc = new BudgetCategory(category, limit, spent);
-            categories.add(bc);
+            categories.put(category, bc);
         }
 
      
-        Collections.sort(categories);
-        Collections.reverse(categories);
+    List<BudgetCategory> sorted = new ArrayList<>(categories.values());
+    sorted.sort(Collections.reverseOrder());
+
+    for (BudgetCategory bc : sorted) {
+    System.out.println(bc);
+}
 
         
-        for (BudgetCategory bc : categories) {
-            System.out.println(bc);
-        }
+      
 
-        
-        int total = budgetDifference(categories);
-        System.out.println("Total budget difference: " + total);
-    }
+int total = budgetDifference(categories);
+System.out.println("Total budget difference: " + total);
 
     /**
      * Returns overall how much over/under budget a person is given a list of their
@@ -56,13 +58,14 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
-        int totalDifference = 0;
+   
 
-        for (BudgetCategory category : categories) {
-            totalDifference += category.getSpent() - category.getLimit();
-        }
-
-        return totalDifference;
+}
+public static int budgetDifference(Map<String, BudgetCategory> categories) {
+    int total = 0;
+    for (BudgetCategory c : categories.values()) {
+        total += c.getSpent() - c.getLimit();
     }
+    return total;
+}
 }
