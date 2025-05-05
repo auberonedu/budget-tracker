@@ -16,9 +16,11 @@ public class BudgetApp {
         System.out.println(rent);**/
 
         String filename = args[0];
+        Budget budget = new Budget();
+
         Scanner scan = new Scanner(new File(filename));
 
-        Map<String, BudgetCategory> categories = new HashMap<>();
+        //Map<String, BudgetCategory> categories = new HashMap<>();
 
         while(scan.hasNextLine()) {
             String category = scan.nextLine();
@@ -29,12 +31,12 @@ public class BudgetApp {
             // Consume \n after spent input 
             if(scan.hasNextLine()) scan.nextLine();
 
-            categories.put(category, new BudgetCategory(category, limit, spent));
+            //categories.put(category, new BudgetCategory(category, limit, spent));
 
-            /*String limitString = String.format("$%.2f", limit);
-            String spentString = String.format("$%.2f", spent);
+            //String limitString = String.format("$%.2f", limit);
+            //String spentString = String.format("$%.2f", spent);
             BudgetCategory budgetCategory = new BudgetCategory(category, limit, spent);
-            categories.add(budgetCategory); */
+            budget.add(budgetCategory);
         }
 
         /* // Sort from most to least overspent category
@@ -53,25 +55,21 @@ public class BudgetApp {
             if (userInput.equalsIgnoreCase("quit")) {
                 break;
             } else if (userInput.equals("summary")) {
-                double totalLimit = 0.0;
-                double totalSpent = 0.0;
-
-                for (BudgetCategory bc : categories.values()) {
-                    totalLimit += bc.getLimit();
-                    totalSpent += bc.getSpent();
-                }
-
-                double difference = totalSpent - totalLimit;
+                double totalLimit = budget.totalLimit();
+                double totalSpent = budget.totalSpent();
+                double remainder = budget.remainder();
 
                 System.out.printf("Total budget limit: $%.2f%n", totalLimit);
                 System.out.printf("Total spent: $%.2f%n", totalSpent);
-                System.out.printf("Budget difference: $%.2f%n", difference);
+                System.out.printf("Budget remainder: $%.2f%n", remainder);
 
-            } else if (categories.containsKey(userInput)) {
-                //BudgetCategory myCategory = categories.get(userInput);
-                System.out.println(categories.get(userInput));
             } else {
+                BudgetCategory result = budget.get(userInput);
+                if (result != null) {
+                    System.out.println(result);
+                } else {
                 System.out.println("Category not found");
+                }
             }
         }
     }
