@@ -18,4 +18,21 @@ public class Budget {
     public BudgetCategory get(String name) {
         return categories.get(name);
     }
+
+    // Total methods
+    public double totalLimit() {
+        double total = 0.0;
+        for (BudgetCategory bc : categories.values()) {
+            total += bc.getLimit();
+        }
+        return total;
+    }
+
+    public double totalSpent() {
+        double total = 0.0;
+        for (BudgetCategory bc : categories.values()) {
+            total += bc.getSpent();
+        }
+        return total;
+    }
 }
