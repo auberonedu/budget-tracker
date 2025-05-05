@@ -47,15 +47,28 @@ public class BudgetApp {
         Scanner userScanner = new Scanner(System.in);
 
         while(true) {
-            System.out.println("Enter the name of the category: ");
+            System.out.println("Enter the name of the category, 'summary' or 'quit': ");
             String userInput = userScanner.nextLine();
 
             if (userInput.equalsIgnoreCase("quit")) {
                 break;
-            }
+            } else if (userInput.equals("summary")) {
+                double totalLimit = 0.0;
+                double totalSpent = 0.0;
 
-            if(categories.containsKey(userInput)) {
-                BudgetCategory myCategory = categories.get(userInput);
+                for (BudgetCategory bc : categories.values()) {
+                    totalLimit += bc.getLimit();
+                    totalSpent += bc.getSpent();
+                }
+
+                double difference = totalSpent - totalLimit;
+
+                System.out.printf("Total budget limit: $%.2f%n", totalLimit);
+                System.out.printf("Total spent: $%.2f%n", totalSpent);
+                System.out.printf("Budget difference: $%.2f%n", difference);
+
+            } else if (categories.containsKey(userInput)) {
+                //BudgetCategory myCategory = categories.get(userInput);
                 System.out.println(categories.get(userInput));
             } else {
                 System.out.println("Category not found");
