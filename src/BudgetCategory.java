@@ -38,4 +38,8 @@ public class BudgetCategory {
         return Double.compare(otherDiff, thisDiff); 
     }
 
+    Object getName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

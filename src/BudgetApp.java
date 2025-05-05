@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class BudgetApp {
@@ -12,24 +14,63 @@ public class BudgetApp {
 
         List<BudgetCategory> categories = new ArrayList<>();
 
-        // Use a for loop for repeated input
-        System.out.print("Enter category name (or 'done' to finish): ");
-        String category = scan.nextLine();
+        Map<String, BudgetCategory> categoryMap = new HashMap<>();
 
-        while (!category.equalsIgnoreCase("done")) {
-            System.out.print("Enter limit for " + category + ": ");
-            double limit = Double.parseDouble(scan.nextLine());
-            System.out.println("Enter spent for "+ category+ ": ");
-            double spent = Double.parseDouble(scan.nextLine());
-            BudgetCategory c = new BudgetCategory(category, limit, spent);
-            categories.add(c);
+        while(scan.hasNextLine()) {
+            String name = scan.nextLine();
 
-            System.out.print("Enter category name (or 'done' to finish): ");
-            category = scan.nextLine();
+            double limit = scan.nextDouble();
+            double spent = scan.nextDouble();
+
+            // Consume \n after balance input 
+            if(scan.hasNextLine()) scan.nextLine();
+
+            BudgetCategory category = new BudgetCategory(name, limit, spent);
+
+            categories.add(category);
+
+            categoryMap.put(name, category);
+
+            // String aprString = String.format("%.2f%%", apr);
+            // String balanceString = String.format("$%.2f", balance);
+            // System.out.println(name + ": " + "APR: " + aprString + " Balance: " + balanceString);
         }
 
-        // Print the categories using a for loop
-        System.out.println(categories);
+        Scanner userInput = new Scanner(System.in);
+        String input = "";
+        while (true) {
+            System.out.print("Enter a category name to view details: ");
+            input = userInput.nextLine();
+
+            BudgetCategory category = categoryMap.get(input); 
+
+            System.out.println(category);
+        
+            if (input.equalsIgnoreCase("quit")) {
+                System.out.println("Exiting category lookup.");
+                break;
+            }
+        }
+    
+
+        // Use a for loop for repeated input
+        // System.out.print("Enter category name (or 'done' to finish): ");
+        // String category = scan.nextLine();
+
+        // while (!category.equalsIgnoreCase("done")) {
+        //     System.out.print("Enter limit for " + category + ": ");
+        //     double limit = Double.parseDouble(scan.nextLine());
+        //     System.out.println("Enter spent for "+ category+ ": ");
+        //     double spent = Double.parseDouble(scan.nextLine());
+        //     BudgetCategory c = new BudgetCategory(category, limit, spent);
+        //     categories.add(c);
+
+        //     System.out.print("Enter category name (or 'done' to finish): ");
+        //     category = scan.nextLine();
+        // }
+
+        // // Print the categories using a for loop
+        // System.out.println(categories);
         
         
     
@@ -67,10 +108,10 @@ public class BudgetApp {
      * @param categories the budget categories with the spend
      * @return the total amount over/under budget
      */
-    public static int budgetDifference(List<BudgetCategory> categories) {
-        // TODO: You will implement this method in Wave 5
-        // Note that this method SHOULD NOT have a print statement.
-        // It should instead return the value.
-        return -1;
-    }
+    // public static int budgetDifference(List<BudgetCategory> categories) {
+    //     // TODO: You will implement this method in Wave 5
+    //     // Note that this method SHOULD NOT have a print statement.
+    //     // It should instead return the value.
+    //     return -1;
+    // }
 }
