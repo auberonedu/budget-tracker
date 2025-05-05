@@ -21,4 +21,14 @@ public class Budget {
         }
         return total;
     }
+    public double totalSpent() {
+        double total = 0.0;
+        for (BudgetCategory category : categories.values()) {
+            total += category.getSpent();
+        }
+        return total;
+    }
+    public double remainder() {
+        return totalLimit() - totalSpent();
+    }
 }
