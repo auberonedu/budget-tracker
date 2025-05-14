@@ -21,4 +21,14 @@ public class BudgetCategoryTest {
         assertEquals(1, result, "We expect entertainment greater than utilities out");
 
     }
+
+    @Test
+    public void CompareToEqual() {
+        BudgetCategory rent1 = new BudgetCategory("Rent", 1350, 1350); 
+        BudgetCategory rent2 = new BudgetCategory("Rent", 1350, 1350); 
+
+        int result = rent1.compareTo(rent2);
+        assertEquals(0, result, "Expected two identical rent instances to be equal");
+    }
+
 }
