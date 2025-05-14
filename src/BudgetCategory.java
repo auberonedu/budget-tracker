@@ -26,8 +26,7 @@ public class BudgetCategory {
 
     @Override
     public String toString() {
-        
-        return String.format(name, limit, spent);
+        return String.format("%s : Budget Limit $%.2f, Spent $%.2f", name, limit, spent);
     }
 
 
