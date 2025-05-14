@@ -1,3 +1,37 @@
 public class BudgetCategory {
+    // Instance Variable 
+    private String name;
+    private double limit;
+    private double spent;
+
+    //Constructor 
+    public BudgetCategory (String name, double limit, double spent){
+        this.name = name;
+        this.limit = limit;
+        this.spent = spent;
+    }
+
+    //Getters
+    public String getName() {
+        return name;
+    }
+
+    public double getLimit() {
+        return limit;
+    }
+
+    public double getSpent() {
+        return spent;
+    }
+
+    @Override
+    public String toString() {
+        
+        return String.format(name, limit, spent);
+    }
+
+
+    
+
     
 }
