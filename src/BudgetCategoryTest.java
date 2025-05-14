@@ -11,5 +11,14 @@ public class BudgetCategoryTest {
         assertEquals(-1, result, "We expect groceries less than Dinning out");
 
     }
-    
+
+    @Test
+    public void compareToGreater(){
+        BudgetCategory entertainment = new BudgetCategory("Entertainment", 80, 115);
+        BudgetCategory utilities = new BudgetCategory("Utilities", 150, 165);
+
+        int result = entertainment.compareTo(utilities);
+        assertEquals(1, result, "We expect entertainment greater than utilities out");
+
+    }
 }
