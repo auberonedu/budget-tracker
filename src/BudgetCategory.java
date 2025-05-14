@@ -1,5 +1,3 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class BudgetCategory implements Comparable<BudgetCategory> {
     // Instance Variable 
     private String name;
