@@ -1,4 +1,6 @@
-public class BudgetCategory {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class BudgetCategory implements Comparable<BudgetCategory> {
     // Instance Variable 
     private String name;
     private double limit;
@@ -24,13 +26,18 @@ public class BudgetCategory {
         return spent;
     }
 
+    public double getDifference() {
+        return spent - limit; 
+    }
+
+
+    public int compareTo(BudgetCategory other){
+        return Double.compare(this.getDifference(), other.getDifference());
+
+    }
+
     @Override
     public String toString() {
         return String.format("%s : Budget Limit $%.2f, Spent $%.2f", name, limit, spent);
     }
-
-
-    
-
-    
 }
