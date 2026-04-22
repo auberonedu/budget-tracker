@@ -34,7 +34,7 @@ public class BudgetApp {
      * @return the total amount over/under budget
      */
     public static int budgetDifference(List<BudgetCategory> categories) {
-        // TODO: You will implement this method in Wave 5
+        // TODO: You will implement this method in Wave 4
         // Note that this method SHOULD NOT have a print statement.
         // It should instead return the value.
         return -1;
